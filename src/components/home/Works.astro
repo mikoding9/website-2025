@@ -53,7 +53,7 @@ const works = await fetchWorks();
             class="absolute top-0 left-0 z-0 h-full"
         />
         {
-            works.map(({ title, image, description }) => (
+            works.map(({ title, image, description, slug }) => (
                 <div class="p-4 space-y-3 md:space-y-4 border border-neutral-800 rounded-sm bg-black/10 hover:bg-black/16 min-w-72 md:min-w-0 z-10 gradient-border-1">
                     <h5 class="text-xl md:text-2xl text-stone-50 line-clamp-3 min-h-[84px] md:min-h-[90px]">{title}</h5>
                     <img src={image} class="rounded-sm w-full h-48 object-cover" />
@@ -61,9 +61,9 @@ const works = await fetchWorks();
                         <p class="text-xs md:text-sm text-neutral-400 grow line-clamp-2">
                             {description}
                         </p>
-                        <button class="text-xs md:text-sm text-white bg-orange-700 rounded-sm w-full md:w-auto md:min-w-28 px-3 py-2 flex-shrink-0">
+                        <a href={`/blog/case-study/${slug}/`} class="text-xs md:text-sm text-white bg-orange-700 rounded-sm w-full md:w-auto md:min-w-28 px-3 py-2 flex-shrink-0 text-center">
                             {ctaText}
-                        </button>
+                        </a>
                     </div>
                 </div>
             ))
