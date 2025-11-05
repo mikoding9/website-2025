@@ -94,11 +94,11 @@ const directusToken =
           class='flex items-center border border-neutral-400 rounded-lg py-2 pl-10 pr-8 text-[10px] sm:text-xs text-neutral-600 bg-stone-100 hover:border-neutral-900 transition-colors min-w-[140px]'
         >
           <svg
-            width='12'
-            height='12'
-            viewBox='0 0 12 12'
+            width='14'
+            height='14'
+            viewBox='0 0 16 16'
             xmlns='http://www.w3.org/2000/svg'
-            class='absolute left-3'
+            class='absolute left-3 flex-shrink-0'
           >
             <g>
               <path
@@ -130,7 +130,7 @@ const directusToken =
         <div
           x-show='categoryOpen'
           x-transition
-          class='absolute top-full left-0 mt-1 w-48 bg-neutral-200 border border-neutral-400 rounded-sm shadow-lg z-50 overflow-hidden p-2 space-y-2'
+          class='absolute top-full left-0 mt-1 w-[28rem] bg-neutral-200 border border-neutral-400 rounded-sm shadow-lg z-50 overflow-hidden p-2 space-y-2'
         >
           <button
             @click="filter = 'all'; currentPage = 1; categoryOpen = false"
@@ -138,11 +138,11 @@ const directusToken =
             :class="filter === 'all' ? 'bg-neutral-800 text-stone-50 rounded-sm' : ''"
           >
             <svg
-              width='12'
-              height='12'
-              viewBox='0 0 12 12'
+              width='14'
+              height='14'
+              viewBox='0 0 16 16'
               xmlns='http://www.w3.org/2000/svg'
-              class='mr-3'
+              class='flex-shrink-0 mr-2'
             >
               <g>
                 <path
@@ -158,11 +158,11 @@ const directusToken =
             :class="filter === 'post' ? 'bg-neutral-800 text-stone-50' : ''"
           >
             <svg
-              width='12'
-              height='12'
-              viewBox='0 0 12 12'
+              width='14'
+              height='14'
+              viewBox='0 0 16 16'
               xmlns='http://www.w3.org/2000/svg'
-              class='mr-3'
+              class='flex-shrink-0 mr-2'
             >
               <path
                 d='M2 6.5H3.5V7.5H2V6.5ZM4.5 7.5H6V6.5H4.5V7.5ZM2 9.5H3.5V8.5H2V9.5ZM4.5 9.5H6V8.5H4.5V9.5ZM2 3.5H3.5V2.5H2V3.5ZM4.5 3.5H6V2.5H4.5V3.5ZM2 5.5H3.5V4.5H2V5.5ZM4.5 5.5H6V4.5H4.5V5.5ZM12 4V12H0V1.5C0 1.10218 0.158035 0.720644 0.43934 0.43934C0.720644 0.158035 1.10218 0 1.5 0L6.5 0C6.89782 0 7.27936 0.158035 7.56066 0.43934C7.84196 0.720644 8 1.10218 8 1.5V2.5H10.5C10.8978 2.5 11.2794 2.65804 11.5607 2.93934C11.842 3.22064 12 3.60218 12 4ZM7 1.5C7 1.36739 6.94732 1.24021 6.85355 1.14645C6.75979 1.05268 6.63261 1 6.5 1H1.5C1.36739 1 1.24021 1.05268 1.14645 1.14645C1.05268 1.24021 1 1.36739 1 1.5V11H7V1.5ZM11 4C11 3.86739 10.9473 3.74021 10.8536 3.64645C10.7598 3.55268 10.6326 3.5 10.5 3.5H8V11H11V4ZM9 7.5H10V6.5H9V7.5ZM9 9.5H10V8.5H9V8.5ZM9 5.5H10V4.5H9V5.5Z'
@@ -176,11 +176,11 @@ const directusToken =
             :class="filter === 'work' ? 'bg-neutral-800 text-stone-50' : ''"
           >
             <svg
-              width='12'
-              height='12'
-              viewBox='0 0 12 12'
+              width='14'
+              height='14'
+              viewBox='0 0 16 16'
               xmlns='http://www.w3.org/2000/svg'
-              class='mr-3'
+              class='flex-shrink-0 mr-2'
             >
               <path
                 d='M10 4C9.46957 4 8.96086 3.78929 8.58579 3.41421C8.21071 3.03914 8 2.53043 8 2C8 1.46957 8.21071 0.960859 8.58579 0.585786C8.96086 0.210714 9.46957 0 10 0C10.5304 0 11.0391 0.210714 11.4142 0.585786C11.7893 0.960859 12 1.46957 12 2C12 2.53043 11.7893 3.03914 11.4142 3.41421C11.0391 3.78929 10.5304 4 10 4ZM10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289C9.10536 1.48043 9 1.73478 9 2C9 2.26522 9.10536 2.51957 9.29289 2.70711C9.48043 2.89464 9.73478 3 10 3C10.2652 3 10.5196 2.89464 10.7071 2.70711C10.8946 2.51957 11 2.26522 11 2C11 1.73478 10.8946 1.48043 10.7071 1.29289C10.5196 1.10536 10.2652 1 10 1ZM5.5 12V11.3905L7.6385 6.719C7.7385 6.50892 7.89599 6.33148 8.09271 6.20725C8.28943 6.08302 8.51733 6.01708 8.75 6.01708C8.98267 6.01708 9.21057 6.08302 9.40729 6.20725C9.60401 6.33148 9.7615 6.50892 9.8615 6.719L12 11.3685V11.978L5.5 12ZM6.77 11H10.73L8.953 7.137C8.93593 7.09732 8.9076 7.06352 8.87152 7.03977C8.83544 7.01602 8.79319 7.00336 8.75 7.00336C8.70681 7.00336 8.66456 7.01602 8.62848 7.03977C8.5924 7.06352 8.56407 7.09732 8.547 7.137L6.77 11ZM6.124 3.2705C6.01604 3.04297 5.84574 2.85074 5.63288 2.71613C5.42002 2.58153 5.17335 2.51007 4.9215 2.51007C4.66965 2.51007 4.42298 2.58153 4.21012 2.71613C3.99726 2.85074 3.82696 3.04297 3.719 3.2705L0 11.3905V12H4.5V11H1.264L4.6275 3.6885C4.65342 3.63227 4.69491 3.58464 4.74706 3.55125C4.79921 3.51786 4.85983 3.50012 4.92175 3.50012C4.98367 3.50012 5.04429 3.51786 5.09644 3.55125C5.14859 3.58464 5.19008 3.63227 5.216 3.6885L6.574 6.6385L6.73 6.2995C6.84694 6.04795 7.00953 5.82026 7.2095 5.628L6.124 3.2705Z'
@@ -202,11 +202,11 @@ const directusToken =
           class='flex items-center border border-neutral-400 rounded-lg py-2 pl-10 pr-8 text-[10px] sm:text-xs text-neutral-600 bg-stone-100 hover:border-neutral-900 transition-colors min-w-[140px]'
         >
           <svg
-            width='16'
-            height='16'
+            width='14'
+            height='14'
             viewBox='0 0 16 16'
             xmlns='http://www.w3.org/2000/svg'
-            class='absolute left-3'
+            class='absolute left-3 flex-shrink-0'
             x-html='getIndustryIcon(industryFilter)'
           >
           </svg>
@@ -234,7 +234,7 @@ const directusToken =
         <div
           x-show='industryOpen'
           x-transition
-          class='absolute top-full left-0 mt-1 w-56 bg-neutral-200 border border-neutral-400 rounded-sm shadow-lg z-50 max-h-64 overflow-y-auto p-2 space-y-2 scrollbar-hide'
+          class='absolute top-full left-0 mt-1 w-80 bg-neutral-200 border border-neutral-400 rounded-sm shadow-lg z-50 max-h-64 overflow-y-auto p-2 space-y-2 scrollbar-hide'
         >
           <template x-for='industry in uniqueIndustries' :key='industry'>
             <button
@@ -243,11 +243,11 @@ const directusToken =
               :class="industryFilter === industry ? 'bg-neutral-800 text-stone-50 rounded-sm' : ''"
             >
               <svg
-                width='16'
-                height='16'
+                width='14'
+                height='14'
                 viewBox='0 0 16 16'
                 xmlns='http://www.w3.org/2000/svg'
-                class='mr-3'
+                class='flex-shrink-0 mr-2'
                 x-html='getIndustryIcon(industry)'
               >
               </svg>
