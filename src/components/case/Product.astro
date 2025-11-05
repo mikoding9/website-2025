@@ -21,39 +21,92 @@ const {
                 ))
             }
         </div>
-        <div class="w-full overflow-x-scroll mt-6 sm:mt-9">
-            <div class="flex space-x-4 h-64 sm:h-96 lg:h-[36rem]">
-                {
-                    gallery?.map((endpoint) => (
-                        <img src={endpoint} alt="" class="rounded-sm h-full" />
-                    ))
-                }
+        <div 
+            x-data={"{ currentIndex: 0, totalImages: " + (gallery?.length || 0) + " }"}
+        >
+            <div 
+                class="w-full overflow-x-scroll mt-6 sm:mt-9 scroll-smooth" 
+                x-ref="gallery"
+                @scroll.passive="
+                    const scrollLeft = $refs.gallery.scrollLeft;
+                    const imageWidth = $refs.gallery.querySelector('img')?.offsetWidth || 0;
+                    currentIndex = Math.round(scrollLeft / (imageWidth + 16));
+                "
+            >
+                <div class="flex space-x-4 h-64 sm:h-96 lg:h-[36rem]">
+                    {
+                        gallery?.map((endpoint) => (
+                            <img src={endpoint} alt="" class="rounded-sm h-full" />
+                        ))
+                    }
+                </div>
             </div>
-        </div>
-        <div class="w-full flex justify-between items-center mt-4 sm:mt-6">
-            <div class="space-x-2 sm:space-x-3">
-                {
-                    gallery?.map((endpoint, i) => (
-                        <button
-                            class={
-                                "cursor-pointer w-2 h-2 sm:w-3 sm:h-3 rounded-full " +
-                                (i === 1 ? "bg-orange-800" : "bg-neutral-400")
+            <div class="w-full flex justify-between items-center mt-4 sm:mt-6">
+                <div class="space-x-2 sm:space-x-3">
+                    {
+                        gallery?.map((endpoint, i) => (
+                            <button
+                                @click={`
+                                    currentIndex = ${i};
+                                    const imageWidth = $refs.gallery.querySelector('img').offsetWidth;
+                                    $refs.gallery.scrollTo({
+                                        left: ${i} * (imageWidth + 16),
+                                        behavior: 'smooth'
+                                    });
+                                `}
+                                :class={`currentIndex === ${i} ? 'bg-orange-800' : 'bg-neutral-400'`}
+                                class="cursor-pointer w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors"
+                            />
+                        ))
+                    }
+                </div>
+                <div class="flex space-x-2 sm:space-x-3">
+                    <button
+                        @click="
+                            if (currentIndex > 0) {
+                                currentIndex--;
+                                const imageWidth = $refs.gallery.querySelector('img').offsetWidth;
+                                $refs.gallery.scrollTo({
+                                    left: currentIndex * (imageWidth + 16),
+                                    behavior: 'smooth'
+                                });
                             }
-                        />
-                    ))
-                }
-            </div>
-            <div class="flex space-x-2 sm:space-x-3">
-                <button
-                    class="border border-neutral-900 rounded-full flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"
-                >
-                    <img src={arrow.src} class="w-3 sm:w-4" />
-                </button>
-                <button
-                    class="border border-neutral-900 rounded-full flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"
-                    ><img src={arrow.src} class="rotate-180 w-3 sm:w-4" />
-                </button>
+                        "
+                        :disabled="currentIndex === 0"
+                        :class="currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'"
+                        class="border border-neutral-900 rounded-full flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10"
+                    >
+                        <img src={arrow.src} class="w-3 sm:w-4" />
+                    </button>
+                    <button
+                        @click="
+                            if (currentIndex < totalImages - 1) {
+                                currentIndex++;
+                                const imageWidth = $refs.gallery.querySelector('img').offsetWidth;
+                                $refs.gallery.scrollTo({
+                                    left: currentIndex * (imageWidth + 16),
+                                    behavior: 'smooth'
+                                });
+                            }
+                        "
+                        :disabled="currentIndex === totalImages - 1"
+                        :class="currentIndex === totalImages - 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'"
+                        class="border border-neutral-900 rounded-full flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10"
+                    >
+                        <img src={arrow.src} class="rotate-180 w-3 sm:w-4" />
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .overflow-x-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .overflow-x-scroll::-webkit-scrollbar {
+        display: none;
+    }
+</style>
