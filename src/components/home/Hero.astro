@@ -5,10 +5,11 @@ interface Props {
 	headline: string;
 	subheadline: string;
 	ctaText: string;
+	ctaLink: string;
 	partnerLogos: string[];
 }
 
-const { headline, subheadline, ctaText, partnerLogos } = Astro.props;
+const { headline, subheadline, ctaText, ctaLink, partnerLogos } = Astro.props;
 ---
 
 <section class="w-full px-6 mt-3 space-y-2">
@@ -26,9 +27,9 @@ const { headline, subheadline, ctaText, partnerLogos } = Astro.props;
 			<h5 class="text-sm sm:text-lg text-neutral-400 px-3 sm:w-1/2">
 				{subheadline}
 			</h5>
-			<button class="bg-orange-600 rounded-sm text-white py-3 px-6">
+			<a href={ctaLink} class="bg-orange-600 rounded-sm text-white py-3 px-6">
 				{ctaText}
-			</button>
+			</a>
 		</div>
 
 		<div class="center-content">
@@ -86,6 +87,12 @@ const { headline, subheadline, ctaText, partnerLogos } = Astro.props;
 		width: max-content;
 		animation: marquee-move-text var(--speed, 20s) linear infinite
 			var(--direction, forwards);
+	}
+
+	.marquee-text-track img {
+		height: 3rem;
+		width: auto;
+		object-fit: contain;
 	}
 
 	@keyframes marquee-move-text {
