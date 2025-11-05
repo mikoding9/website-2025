@@ -19,6 +19,7 @@ const landingPageData = await fetchLandingPage();
 			headline={landingPageData.hero.headline}
 			subheadline={landingPageData.hero.subheadline}
 			ctaText={landingPageData.hero.ctaText}
+			ctaLink={landingPageData.hero.ctaLink}
 			partnerLogos={landingPageData.hero.partnerLogos}
 		/>
 		<Service
@@ -140,6 +141,7 @@ const landingPageData = await fetchLandingPage();
 		mask-composite: xor;
 		-webkit-mask-composite: xor;
 		transition: background 0.3s ease; /* Smooth transition */
+		pointer-events: none;
 	}
 
 	.gradient-border-1:hover::before {
