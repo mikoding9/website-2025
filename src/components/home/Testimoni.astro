@@ -2,15 +2,15 @@
 import { fetchTestimonials } from "../../utils/api";
 
 interface Industry {
-    name: string;
-    icon: string;
+  name: string;
+  icon: string;
 }
 
 interface Props {
-    sectionTag: string;
-    headline: string;
-    description: string;
-    industries: Industry[];
+  sectionTag: string;
+  headline: string;
+  description: string;
+  industries: Industry[];
 }
 
 const { sectionTag, headline, description, industries } = Astro.props;
@@ -19,146 +19,144 @@ const testimonials = await fetchTestimonials();
 ---
 
 <style>
-    .scrollbar-hide-y {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .scrollbar-hide-y::-webkit-scrollbar {
-        display: none;
-    }
+  .scrollbar-hide-y {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide-y::-webkit-scrollbar {
+    display: none;
+  }
 </style>
 
 <section
-    class="sm:grid grid-cols-2 gap-x-6 mx-4 md:mx-6 py-12 border-t border-neutral-700 mt-12 overflow-x-hidden"
+  class='sm:grid grid-cols-2 gap-x-6 mx-4 md:mx-6 py-12 border-t border-neutral-700 mt-12 overflow-x-hidden'
 >
-    <h6
-        class="text-orange-500 text-xl col-span-2 mb-6 fade-in-right"
-        style="animation-delay: 750ms;"
-    >
-        {sectionTag}
-    </h6>
-    <div class="space-y-6 fade-in-right" style="animation-delay: 750ms;">
-        <h3 class="text-stone-50 text-3xl md:text-4xl lg:text-5xl">
-            {headline}
-        </h3>
-        <p class="text-neutral-400 text-base md:text-lg block">
-            {description}
-        </p>
-        <div class="flex space-x-2 flex-wrap">
-            {
-                industries.map(({ name, icon }) => (
-                    <span class="rounded-lg border border-neutral-600 text-xs text-neutral-400 py-2 px-3 flex space-x-1">
-                        <img
-                            src={`https://panel.braga.co.id/panel/assets/${icon}`}
-                        />
-                        <p>{name}</p>
-                    </span>
-                ))
-            }
+  <h6
+    class='text-orange-500 text-xl col-span-2 mb-6 fade-in-right'
+    style='animation-delay: 750ms;'
+  >
+    {sectionTag}
+  </h6>
+  <div class='space-y-6 fade-in-right' style='animation-delay: 750ms;'>
+    <h3 class='text-stone-50 text-3xl md:text-4xl lg:text-5xl'>
+      {headline}
+    </h3>
+    <p class='text-neutral-400 text-base md:text-lg block'>
+      {description}
+    </p>
+    <div class='flex space-x-4 flex-wrap'>
+      {
+        industries.map(({ name, icon }) => (
+          <span class='rounded-lg border border-neutral-600 text-xs text-neutral-400 py-2 px-3 flex space-x-2 items-center'>
+            <img src={`https://panel.braga.co.id/panel/assets/${icon}`} />
+            <p>{name}</p>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+  <div
+    class='space-y-12 md:space-y-16 mt-12 sm:-mt-6 max-h-[75vh] overflow-y-scroll mb-12 py-6 fadeout-vertical fade-in-left scrollbar-hide-y'
+    style='animation-delay: 750ms;'
+  >
+    {
+      testimonials.map((testimonial, index) => (
+        <div>
+          <p class='text-neutral-500 border-b border-neutral-600 pb-1'>
+            {String(index + 1).padStart(2, "0")}/
+          </p>
+          <p class='text-white text-base md:text-lg mt-3 mb-4 md:mb-6 leading-relaxed'>
+            "{testimonial.message}"
+          </p>
+          <div class='flex space-x-3 md:space-x-4 items-start'>
+            <div id='avatar list' class='flex items-center flex-shrink-0'>
+              <img
+                src={testimonial.personImage}
+                alt={testimonial.name}
+                class='rounded-full w-12 h-12 md:w-14 md:h-14 object-cover'
+              />
+              <img
+                src={testimonial.companyImage}
+                alt={testimonial.company}
+                class='rounded-full w-12 h-12 md:w-14 md:h-14 -ml-2 md:-ml-3 object-cover border-2 border-neutral-900'
+              />
+            </div>
+            <div class='min-w-0'>
+              <h6 class='text-stone-50 text-sm md:text-base font-medium'>
+                {testimonial.name} - {testimonial.role}
+              </h6>
+              <p class='text-neutral-400 text-xs md:text-sm mt-1'>
+                {testimonial.company}
+              </p>
+            </div>
+          </div>
         </div>
-    </div>
-    <div
-        class="space-y-12 md:space-y-16 mt-12 sm:-mt-6 max-h-[75vh] overflow-y-scroll mb-12 py-6 fadeout-vertical fade-in-left scrollbar-hide-y"
-        style="animation-delay: 750ms;"
-    >
-        {
-            testimonials.map((testimonial, index) => (
-                <div>
-                    <p class="text-neutral-500 border-b border-neutral-600 pb-1">
-                        {String(index + 1).padStart(2, "0")}/
-                    </p>
-                    <p class="text-white text-base md:text-lg mt-3 mb-4 md:mb-6 leading-relaxed">
-                        "{testimonial.message}"
-                    </p>
-                    <div class="flex space-x-3 md:space-x-4 items-start">
-                        <div id="avatar list" class="flex items-center flex-shrink-0">
-                            <img
-                                src={testimonial.personImage}
-                                alt={testimonial.name}
-                                class="rounded-full w-12 h-12 md:w-14 md:h-14 object-cover"
-                            />
-                            <img
-                                src={testimonial.companyImage}
-                                alt={testimonial.company}
-                                class="rounded-full w-12 h-12 md:w-14 md:h-14 -ml-2 md:-ml-3 object-cover border-2 border-neutral-900"
-                            />
-                        </div>
-                        <div class="min-w-0">
-                            <h6 class="text-stone-50 text-sm md:text-base font-medium">
-                                {testimonial.name} - {testimonial.role}
-                            </h6>
-                            <p class="text-neutral-400 text-xs md:text-sm mt-1">
-                                {testimonial.company}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            ))
-        }
-    </div>
+      ))
+    }
+  </div>
 </section>
 <style>
-    .fadeout-vertical {
-        mask-image: linear-gradient(
-            to bottom,
-            transparent,
-            black 5rem,
-            black calc(100% - 5rem),
-            transparent
-        );
-    }
+  .fadeout-vertical {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 5rem,
+      black calc(100% - 5rem),
+      transparent
+    );
+  }
 
-    /* Initial hidden state */
-    .fade-in-left {
-        opacity: 0;
-        transform: translateX(90px);
-    }
+  /* Initial hidden state */
+  .fade-in-left {
+    opacity: 0;
+    transform: translateX(90px);
+  }
 
-    /* Animation when visible */
-    .fade-in-left.visible {
-        animation: fadeInLeft 0.75s ease-out forwards;
-    }
+  /* Animation when visible */
+  .fade-in-left.visible {
+    animation: fadeInLeft 0.75s ease-out forwards;
+  }
 
-    @keyframes fadeInLeft {
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+  @keyframes fadeInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
+  }
 
-    /* Initial hidden state */
-    .fade-in-right {
-        opacity: 0;
-        transform: translateX(-90px);
-    }
+  /* Initial hidden state */
+  .fade-in-right {
+    opacity: 0;
+    transform: translateX(-90px);
+  }
 
-    /* Animation when visible */
-    .fade-in-right.visible {
-        animation: fadeInRight 0.75s ease-out forwards;
-    }
+  /* Animation when visible */
+  .fade-in-right.visible {
+    animation: fadeInRight 0.75s ease-out forwards;
+  }
 
-    @keyframes fadeInRight {
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+  @keyframes fadeInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
+  }
 </style>
 
 <script>
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        },
-        { threshold: 0.1 },
-    );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
 
-    // Observe all animated elements
-    document
-        .querySelectorAll(".fade-in-left, .fade-in-right")
-        .forEach((el) => observer.observe(el));
+  // Observe all animated elements
+  document
+    .querySelectorAll(".fade-in-left, .fade-in-right")
+    .forEach((el) => observer.observe(el));
 </script>
