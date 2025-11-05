@@ -218,6 +218,7 @@ interface DBLandingPage {
     h_headline: string;
     h_subheadline: string;
     h_ctaText: string;
+    h_ctaLink: string;
     h_partnerLogos: { directus_files_id: string }[];
     s_sectionTag: string;
     s_headline: string;
@@ -249,6 +250,7 @@ export interface LandingPageData {
         headline: string;
         subheadline: string;
         ctaText: string;
+        ctaLink: string;
         partnerLogos: string[];
     };
     service: {
@@ -294,7 +296,7 @@ export const fetchLandingPage = async (): Promise<LandingPageData> => {
         fields: '*,h_partnerLogos.directus_files_id'
     })
     const response = await fetch(
-        "https://panel.braga.co.id/panel/items/landing_page/1?" + queryString,
+        "https://panel.braga.co.id/panel/items/landing_page/2?" + queryString,
         { headers: { Authorization: 'Bearer ' + accessToken } }
     );
     const json = await response.json();
@@ -305,6 +307,7 @@ export const fetchLandingPage = async (): Promise<LandingPageData> => {
             headline: data.h_headline,
             subheadline: data.h_subheadline,
             ctaText: data.h_ctaText,
+            ctaLink: data.h_ctaLink,
             partnerLogos: data.h_partnerLogos.map(logo =>
                 `https://panel.braga.co.id/panel/assets/${logo.directus_files_id}`
             )
