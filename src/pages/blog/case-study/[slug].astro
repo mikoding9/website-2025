@@ -7,10 +7,12 @@ import { fetchWorks, fetchWorkBySlug, fetchTestimonialsByWorkId } from "../../..
 
 export async function getStaticPaths() {
     const works = await fetchWorks();
-    return works.map((work) => ({
-        params: { slug: work.slug },
-        // props: { work },
-    }));
+    return works
+        .filter(work => work.slug && typeof work.slug === 'string')
+        .map((work) => ({
+            params: { slug: work.slug },
+            // props: { work },
+        }));
 }
 
 const { slug } = Astro.params;

@@ -9,9 +9,11 @@ import { fetchPosts, fetchPostBySlug } from "../../../utils/api";
 
 export async function getStaticPaths() {
     const posts = await fetchPosts();
-    return posts.map((post) => ({
-        params: { slug: post.slug }
-    }));
+    return posts
+        .filter(post => post.slug && typeof post.slug === 'string')
+        .map((post) => ({
+            params: { slug: post.slug }
+        }));
 }
 
 const { slug } = Astro.params;
