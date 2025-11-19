@@ -6,7 +6,7 @@ import { formatDate } from "../../utils/func";
 const works = await fetchWorks();
 const posts = await fetchPosts();
 
-const allWorks = works.slice(0, 6).map((work) => ({
+const allWorks = works.map((work) => ({
   thumbnail: work.image,
   topic: work.topic,
   date_created: formatDate(work.date_created),
@@ -16,7 +16,7 @@ const allWorks = works.slice(0, 6).map((work) => ({
   type: "work",
 }));
 
-const allPosts = posts.slice(0, 6).map((post) => ({
+const allPosts = posts.map((post) => ({
   thumbnail: post.thumbnail,
   topic: post.topic,
   date_created: formatDate(post.date_created),
@@ -91,14 +91,14 @@ const directusToken =
       >
         <button
           @click='categoryOpen = !categoryOpen'
-          class='flex items-center border border-neutral-400 rounded-lg py-2 pl-10 pr-8 text-[10px] sm:text-xs text-neutral-600 bg-stone-100 hover:border-neutral-900 transition-colors min-w-[140px]'
+          class='flex items-center border border-neutral-400 rounded-lg py-2 pl-12 pr-8 text-[10px] sm:text-xs text-neutral-600 bg-stone-100 hover:border-neutral-900 transition-colors min-w-[140px]'
         >
           <svg
-            width='14'
-            height='14'
+            width='20'
+            height='20'
             viewBox='0 0 16 16'
             xmlns='http://www.w3.org/2000/svg'
-            class='absolute left-3 flex-shrink-0'
+            class='absolute left-2.5 flex-shrink-0'
           >
             <g>
               <path
@@ -138,8 +138,8 @@ const directusToken =
             :class="filter === 'all' ? 'bg-neutral-800 text-stone-50 rounded-sm' : ''"
           >
             <svg
-              width='14'
-              height='14'
+              width='20'
+              height='20'
               viewBox='0 0 16 16'
               xmlns='http://www.w3.org/2000/svg'
               class='flex-shrink-0 mr-2'
@@ -158,8 +158,8 @@ const directusToken =
             :class="filter === 'post' ? 'bg-neutral-800 text-stone-50' : ''"
           >
             <svg
-              width='14'
-              height='14'
+              width='20'
+              height='20'
               viewBox='0 0 16 16'
               xmlns='http://www.w3.org/2000/svg'
               class='flex-shrink-0 mr-2'
@@ -176,8 +176,8 @@ const directusToken =
             :class="filter === 'work' ? 'bg-neutral-800 text-stone-50' : ''"
           >
             <svg
-              width='14'
-              height='14'
+              width='20'
+              height='20'
               viewBox='0 0 16 16'
               xmlns='http://www.w3.org/2000/svg'
               class='flex-shrink-0 mr-2'
@@ -199,11 +199,11 @@ const directusToken =
       >
         <button
           @click='industryOpen = !industryOpen'
-          class='flex items-center border border-neutral-400 rounded-lg py-2 pl-10 pr-8 text-[10px] sm:text-xs text-neutral-600 bg-stone-100 hover:border-neutral-900 transition-colors min-w-[140px]'
+          class='flex items-center border border-neutral-400 rounded-lg py-2 pl-11 pr-8 text-[10px] sm:text-xs text-neutral-600 bg-stone-100 hover:border-neutral-900 transition-colors min-w-[140px]'
         >
           <svg
-            width='14'
-            height='14'
+            width='16'
+            height='16'
             viewBox='0 0 16 16'
             xmlns='http://www.w3.org/2000/svg'
             class='absolute left-3 flex-shrink-0'
@@ -243,8 +243,8 @@ const directusToken =
               :class="industryFilter === industry ? 'bg-neutral-800 text-stone-50 rounded-sm' : ''"
             >
               <svg
-                width='14'
-                height='14'
+                width='16'
+                height='16'
                 viewBox='0 0 16 16'
                 xmlns='http://www.w3.org/2000/svg'
                 class='flex-shrink-0 mr-2'
@@ -273,8 +273,21 @@ const directusToken =
       >
     </div>
   </div>
+
+  <!-- Debug info -->
+  <!-- <div class='mb-4 p-4 bg-blue-50 border border-blue-300 rounded-lg text-sm'>
+    <p><strong>Debug Info:</strong></p>
+    <p>Current Page: <span x-text='currentPage' class='font-bold'></span> / <span x-text='totalPages' class='font-bold'></span></p>
+    <p>Total Items: <span x-text='allFilteredBlogs.length' class='font-bold'></span></p>
+    <p>Showing Items: <span x-text='filteredBlogs.length' class='font-bold'></span></p>
+    <p>Items Per Page: <span x-text='itemsPerPage' class='font-bold'></span></p>
+  </div> -->
+
   <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
-    <template x-for='blog in filteredBlogs' :key='blog.href'>
+    <template
+      x-for='(blog, index) in filteredBlogs'
+      :key='`page-${currentPage}-item-${index}`'
+    >
       <div
         class='flex flex-col justify-between p-3 bg-stone-100/70 border border-neutral-400 rounded-sm space-y-3'
       >
@@ -282,7 +295,7 @@ const directusToken =
           <img
             :src='blog.thumbnail'
             alt=''
-            class='w-full h-48 sm:h-56 lg:h-64 object-cover object-center rounded-sm border border-black/10'
+            class='w-full h-48 sm:h-56 lg:h-64 object-cover object-top rounded-sm border border-black/10'
           />
           <h6
             class='text-neutral-800 border-b border-neutral-600'

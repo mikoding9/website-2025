@@ -49,15 +49,17 @@ const { highlights, testimonials, works }: { highlights?: Highlight[], testimoni
                             </p>
                             <div class="flex space-x-4 sm:space-x-6">
                                 <div id="avatar list" class="flex items-center">
-                                    <img
-                                        src={testimonial.personImage}
-                                        alt={testimonial.name}
-                                        class="rounded-full w-10 h-10 sm:w-14 sm:h-14"
-                                    />
+                                    {testimonial.personImage && (
+                                        <img
+                                            src={testimonial.personImage}
+                                            alt={testimonial.name}
+                                            class="rounded-full w-10 h-10 sm:w-14 sm:h-14"
+                                        />
+                                    )}
                                     <img
                                         src={testimonial.companyImage}
                                         alt={testimonial.company}
-                                        class="rounded-full w-10 h-10 sm:w-14 sm:h-14 -ml-2 sm:-ml-3"
+                                        class={`rounded-full w-10 h-10 sm:w-14 sm:h-14 ${testimonial.personImage ? '-ml-2 sm:-ml-3' : ''}`}
                                     />
                                 </div>
                                 <div>
