@@ -70,15 +70,17 @@ const testimonials = await fetchTestimonials();
           </p>
           <div class='flex space-x-3 md:space-x-4 items-start'>
             <div id='avatar list' class='flex items-center flex-shrink-0'>
-              <img
-                src={testimonial.personImage}
-                alt={testimonial.name}
-                class='rounded-full w-12 h-12 md:w-14 md:h-14 object-cover'
-              />
+              {testimonial.personImage && (
+                <img
+                  src={testimonial.personImage}
+                  alt={testimonial.name}
+                  class='rounded-full w-12 h-12 md:w-14 md:h-14 object-cover'
+                />
+              )}
               <img
                 src={testimonial.companyImage}
                 alt={testimonial.company}
-                class='rounded-full w-12 h-12 md:w-14 md:h-14 -ml-2 md:-ml-3 object-cover border-2 border-neutral-900'
+                class={`rounded-full w-12 h-12 md:w-14 md:h-14 object-cover border-2 border-neutral-900 ${testimonial.personImage ? '-ml-2 md:-ml-3' : ''}`}
               />
             </div>
             <div class='min-w-0'>

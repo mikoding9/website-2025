@@ -158,7 +158,7 @@ export interface Testimonial {
     message: string;
     name: string;
     role: string;
-    personImage: string;
+    personImage: string | null;
     companyImage: string;
     company: string;
 }
@@ -181,7 +181,7 @@ export const fetchTestimonials = async (): Promise<Testimonial[]> => {
         message: testimonial.message,
         name: testimonial.name,
         role: testimonial.role,
-        personImage: `https://panel.braga.co.id/panel/assets/${testimonial.person_image}`,
+        personImage: testimonial.person_image ? `https://panel.braga.co.id/panel/assets/${testimonial.person_image}` : null,
         companyImage: `https://panel.braga.co.id/panel/assets/${testimonial.company_image}`,
         company: testimonial.company
     }));
@@ -207,7 +207,7 @@ export const fetchTestimonialsByWorkId = async (workId: number): Promise<Testimo
         message: testimonial.message,
         name: testimonial.name,
         role: testimonial.role,
-        personImage: `https://panel.braga.co.id/panel/assets/${testimonial.person_image}`,
+        personImage: testimonial.person_image ? `https://panel.braga.co.id/panel/assets/${testimonial.person_image}` : null,
         companyImage: `https://panel.braga.co.id/panel/assets/${testimonial.company_image}`,
         company: testimonial.company
     }));
