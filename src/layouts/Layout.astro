@@ -82,6 +82,54 @@ const navs = [
     <meta name='generator' content={Astro.generator} />
     <meta name='description' content={description || defaultDescription} />
     <title>Braga Website</title>
+
+    <!-- Canonical URL -->
+    <link
+      rel='canonical'
+      href={new URL(Astro.url.pathname, "https://braga.co.id")}
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={Astro.url} />
+    <meta property='og:title' content='Braga Website' />
+    <meta
+      property='og:description'
+      content={description || defaultDescription}
+    />
+    <meta
+      property='og:image'
+      content={new URL("/og-image.jpg", "https://braga.co.id")}
+    />
+
+    <!-- Twitter -->
+    <meta property='twitter:card' content='summary_large_image' />
+    <meta property='twitter:url' content={Astro.url} />
+    <meta property='twitter:title' content='Braga Website' />
+    <meta
+      property='twitter:description'
+      content={description || defaultDescription}
+    />
+    <meta
+      property='twitter:image'
+      content={new URL("/og-image.jpg", "https://braga.co.id")}
+    />
+
+    <!-- Schema.org -->
+    <script type='application/ld+json' is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Braga",
+        "url": "https://braga.co.id",
+        "logo": "https://braga.co.id/nav-icon-light.svg",
+        "sameAs": [
+          "https://www.linkedin.com/company/braga-technologies",
+          "https://www.instagram.com/braga.technologies"
+        ]
+      }
+    </script>
+
     <script is:inline>
       const setFavicon = () => {
         const favicon = document.getElementById("favicon");
