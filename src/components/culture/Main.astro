@@ -65,7 +65,7 @@ import arrow from "../../assets/about/arrow.svg";
             class='bg-orange-700 py-2 px-3 text-sm text-white rounded-sm flex space-x-2 mt-8 items-center'
             ><p>Grow With Us</p><img
               src={arrow.src}
-              alt=''
+              alt='Arrow icon'
               class='w-4 h-4'
             /></button
           >
@@ -92,7 +92,7 @@ import arrow from "../../assets/about/arrow.svg";
         // Calculate scroll progress (0 at top, 1 at bottom)
         const scrollProgress = Math.max(
           0,
-          Math.min(1, -canvasRect.top / (canvasHeight - viewportHeight))
+          Math.min(1, -canvasRect.top / (canvasHeight - viewportHeight)),
         );
 
         const startPosition = 14;

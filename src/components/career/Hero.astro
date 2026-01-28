@@ -119,14 +119,14 @@ const comments = [
           <button
             id='move-prev'
             class='border border-stone-100 rounded-full w-9 h-9 md:w-11 md:h-11 flex items-center justify-center cursor-pointer hover:bg-stone-700'
-            ><img src={arrowLeft.src} alt='' id='move-prev' />
+            ><img src={arrowLeft.src} alt='Previous slide' id='move-prev' />
           </button>
           <button
             id='move-next'
             class='border border-stone-100 rounded-full w-9 h-9 md:w-11 md:h-11 flex items-center justify-center cursor-pointer hover:bg-stone-700'
             ><img
               src={arrowLeft.src}
-              alt=''
+              alt='Next slide'
               class='-scale-x-90'
               id='move-next'
             />
@@ -171,7 +171,7 @@ const comments = [
   }
 </style>
 
-<script client:load>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     console.log("Efficient carousel initialized");
 
