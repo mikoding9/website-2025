@@ -48,7 +48,10 @@ const testimonials = await fetchTestimonials();
       {
         industries.map(({ name, icon }) => (
           <span class='rounded-lg border border-neutral-600 text-xs text-neutral-400 py-2 px-3 flex space-x-2 items-center'>
-            <img src={`https://panel.braga.co.id/panel/assets/${icon}`} />
+            <img
+              src={`https://panel.braga.co.id/panel/assets/${icon}`}
+              alt={`${name} icon`}
+            />
             <p>{name}</p>
           </span>
         ))
@@ -80,7 +83,7 @@ const testimonials = await fetchTestimonials();
               <img
                 src={testimonial.companyImage}
                 alt={testimonial.company}
-                class={`rounded-full w-12 h-12 md:w-14 md:h-14 object-cover border-2 border-neutral-900 ${testimonial.personImage ? '-ml-2 md:-ml-3' : ''}`}
+                class={`rounded-full w-12 h-12 md:w-14 md:h-14 object-cover border-2 border-neutral-900 ${testimonial.personImage ? "-ml-2 md:-ml-3" : ""}`}
               />
             </div>
             <div class='min-w-0'>
@@ -154,7 +157,7 @@ const testimonials = await fetchTestimonials();
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.1 },
   );
 
   // Observe all animated elements

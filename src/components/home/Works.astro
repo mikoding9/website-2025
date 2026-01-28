@@ -3,10 +3,10 @@ import workDecor from "../../assets/home/work-decor.svg";
 import { fetchWorks } from "../../utils/api";
 
 interface Props {
-    sectionTag: string;
-    headline: string;
-    description: string;
-    ctaText: string;
+  sectionTag: string;
+  headline: string;
+  description: string;
+  ctaText: string;
 }
 
 const { sectionTag, headline, description, ctaText } = Astro.props;
@@ -15,58 +15,67 @@ const works = await fetchWorks();
 ---
 
 <style>
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 </style>
 
-<section class="mx-4 md:mx-6 pt-12 pb-24 border-t border-neutral-700">
-    <h6
-        class="text-orange-500 text-lg md:text-xl mb-2 fade-in"
-        style="animation-delay: 750ms;"
-    >
-        {sectionTag}
-    </h6>
-    <div
-        class="sm:grid grid-cols-1 md:grid-cols-2 space-y-6 md:space-y-0 gap-x-6 fade-in"
-        style="animation-delay: 750ms;"
-    >
-        <h3 class="text-stone-50 text-3xl md:text-4xl lg:text-5xl w-full md:w-2/3">
-            {headline}
-        </h3>
-        <p class="text-neutral-400 text-base md:text-lg">
-            {description}
-        </p>
-    </div>
-    <div
-        class="bg-neutral-900 mt-12 sm:mt-9 flex overflow-x-scroll md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:p-4 lg:p-6 md:border border-neutral-800 rounded-sm relative fade-in-up scrollbar-hide"
-        style="animation-delay: 1300ms;"
-    >
-        <img
-            src={workDecor.src}
-            alt=""
-            srcset=""
-            class="absolute top-0 left-0 z-0 h-full"
-        />
-        {
-            works.map(({ title, image, description, slug }) => (
-                <div class="p-4 space-y-3 md:space-y-4 border border-neutral-800 rounded-sm bg-black/10 hover:bg-black/16 min-w-72 md:min-w-0 z-10 gradient-border-1">
-                    <h5 class="text-xl md:text-2xl text-stone-50 line-clamp-3 min-h-[84px] md:min-h-[90px]">{title}</h5>
-                    <img src={image} class="rounded-sm w-full h-48 object-cover" />
-                    <div class="flex flex-col md:flex-row justify-between space-y-2 md:space-y-0 md:space-x-2">
-                        <p class="text-xs md:text-sm text-neutral-400 grow line-clamp-2">
-                            {description}
-                        </p>
-                        <a href={`/blog/case-study/${slug}/`} class="text-xs md:text-sm text-white bg-orange-700 rounded-sm w-full md:w-auto md:min-w-28 px-3 py-2 flex-shrink-0 text-center">
-                            {ctaText}
-                        </a>
-                    </div>
-                </div>
-            ))
-        }
-    </div>
+<section class='mx-4 md:mx-6 pt-12 pb-24 border-t border-neutral-700'>
+  <h6
+    class='text-orange-500 text-lg md:text-xl mb-2 fade-in'
+    style='animation-delay: 750ms;'
+  >
+    {sectionTag}
+  </h6>
+  <div
+    class='sm:grid grid-cols-1 md:grid-cols-2 space-y-6 md:space-y-0 gap-x-6 fade-in'
+    style='animation-delay: 750ms;'
+  >
+    <h3 class='text-stone-50 text-3xl md:text-4xl lg:text-5xl w-full md:w-2/3'>
+      {headline}
+    </h3>
+    <p class='text-neutral-400 text-base md:text-lg'>
+      {description}
+    </p>
+  </div>
+  <div
+    class='bg-neutral-900 mt-12 sm:mt-9 flex overflow-x-scroll md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:p-4 lg:p-6 md:border border-neutral-800 rounded-sm relative fade-in-up scrollbar-hide'
+    style='animation-delay: 1300ms;'
+  >
+    <img
+      src={workDecor.src}
+      alt=''
+      srcset=''
+      class='absolute top-0 left-0 z-0 h-full'
+    />
+    {
+      works.map(({ title, image, description, slug }) => (
+        <div class='p-4 space-y-3 md:space-y-4 border border-neutral-800 rounded-sm bg-black/10 hover:bg-black/16 min-w-72 md:min-w-0 z-10 gradient-border-1'>
+          <h5 class='text-xl md:text-2xl text-stone-50 line-clamp-3 min-h-[84px] md:min-h-[90px]'>
+            {title}
+          </h5>
+          <img
+            src={image}
+            alt={title}
+            class='rounded-sm w-full h-48 object-cover'
+          />
+          <div class='flex flex-col md:flex-row justify-between space-y-2 md:space-y-0 md:space-x-2'>
+            <p class='text-xs md:text-sm text-neutral-400 grow line-clamp-2'>
+              {description}
+            </p>
+            <a
+              href={`/blog/case-study/${slug}/`}
+              class='text-xs md:text-sm text-white bg-orange-700 rounded-sm w-full md:w-auto md:min-w-28 px-3 py-2 flex-shrink-0 text-center'
+            >
+              {ctaText}
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </div>
 </section>

@@ -106,7 +106,7 @@ const activities = [
               {number}
             </p>
             <h5 class='text-white text-xl md:text-2xl'>{title}</h5>
-            <img src={icon.src} alt='' class='' />
+            <img src={icon.src} alt={`${title} icon`} class='' />
             <p class='text-neutral-400 text-base md:text-xl'>{description}</p>
           </div>
         ))
@@ -125,7 +125,7 @@ const activities = [
             activities.map((image, i) => (
               <img
                 src={image.src}
-                alt=''
+                alt={`Team activity ${i + 1}`}
                 class={
                   "md:relative absolute inset-0 w-full h-full object-cover activity-slide " +
                   (i === 0
@@ -220,16 +220,16 @@ const activities = [
 
       activityElements.slides[currentIndex]?.classList.add("hide-activity");
       activityElements.slides[targetIndexZero]?.classList.remove(
-        "hide-activity"
+        "hide-activity",
       );
 
       activityElements.triggers[currentIndex]?.classList.replace(
         "bg-orange-800",
-        "bg-neutral-400"
+        "bg-neutral-400",
       );
       activityElements.triggers[targetIndexZero]?.classList.replace(
         "bg-neutral-400",
-        "bg-orange-800"
+        "bg-orange-800",
       );
 
       currentActivity = targetIndex;

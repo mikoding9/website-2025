@@ -2,91 +2,91 @@
 import navigate from "../../assets/home/navigate.svg";
 
 const { theme } = Astro.props;
-const route = Astro.url.pathname
+const route = Astro.url.pathname;
 ---
 
-<div class="w-full px-3 sm:px-6">
-    <section
-        class={theme +
-            " grid grid-cols-6 bg-stone-200 dark:bg-neutral-800 p-10 w-full rounded-lg"}
+<div class='w-full px-3 sm:px-6'>
+  <section
+    class={theme +
+      " grid grid-cols-6 bg-stone-200 dark:bg-neutral-800 p-10 w-full rounded-lg"}
+  >
+    <div
+      class={theme +
+        " col-span-6 sm:col-span-4 sm:space-x-30 flex article order-1"}
     >
-        <div
-            class={theme +
-                " col-span-6 sm:col-span-4 sm:space-x-30 flex article order-1"}
+      <div>
+        <h6>Product</h6>
+        <p>Geodashboard</p>
+        <p>Logbook</p>
+        <p>Poin</p>
+
+        <h6 class='mt-4'>Service</h6>
+        <p>Data Service</p>
+        <p>Software Development</p>
+      </div>
+
+      <div>
+        <h6>Company</h6>
+        <p>About</p>
+        <p>Culture</p>
+        <p>Career</p>
+
+        <h6 class='mt-4'>Contact us</h6>
+      </div>
+    </div>
+    <div class='col-span-6 sm:col-span-2 order-3 sm:order-2'>
+      <p class='text-neutral-500'>
+        Indonesia’s Leading Geospatial Technology that optimize analytics and
+        performance, moving the world one map at a time.
+      </p>
+      <span class='flex space-x-4 mt-4'>
+        <a
+          href='https://www.linkedin.com/company/braga-technology/'
+          target='_blank'
+          class={` ${route === "/products/poin" || route === "/products/poin/" ? "border-[#EA374C] text-[#EA374C]" : "border-orange-500 text-orange-500"} border  rounded-full py-1 w-36 text-center`}
+          >LinkedIn</a
         >
-            <div>
-                <h6>Product</h6>
-                <p>Geodashboard</p>
-                <p>Logbook</p>
-                <p>Poin</p>
+        <a
+          href='https://www.youtube.com/@bragatechnologies6807'
+          target='_blank'
+          class={` ${route === "/products/poin" || route === "/products/poin/" ? "border-[#EA374C] text-[#EA374C]" : "border-orange-500 text-orange-500"} border  rounded-full py-1 w-36 text-center`}
+          >Youtube</a
+        ></span
+      >
+    </div>
+    <img
+      src={navigate.src}
+      alt=''
+      class='col-span-6 mt-30 mb-12 order-2 sm:order-3 invert dark:invert-0'
+    />
 
-                <h6 class="mt-4">Service</h6>
-                <p>Data Service</p>
-                <p>Software Development</p>
-            </div>
-
-            <div>
-                <h6>Company</h6>
-                <p>About</p>
-                <p>Culture</p>
-                <p>Career</p>
-
-                <h6 class="mt-4">Contact us</h6>
-            </div>
-        </div>
-        <div class="col-span-6 sm:col-span-2 order-3 sm:order-2">
-            <p class="text-neutral-500">
-                Indonesia’s Leading Geospatial Technology that optimize
-                analytics and performance, moving the world one map at a time.
-            </p>
-            <span class="flex space-x-4 mt-4">
-                <a
-                    href="https://www.linkedin.com/company/braga-technology/"
-                    target="_blank"
-                    class={` ${route === '/products/poin' || route === '/products/poin/' ? 'border-[#EA374C] text-[#EA374C]' : 'border-orange-500 text-orange-500'} border  rounded-full py-1 w-36 text-center`}
-                    >LinkedIn</a
-                >
-                <a
-                    href="https://www.youtube.com/@bragatechnologies6807"
-                    target="_blank"
-                    class={` ${route === '/products/poin' || route === '/products/poin/' ? 'border-[#EA374C] text-[#EA374C]' : 'border-orange-500 text-orange-500'} border  rounded-full py-1 w-36 text-center`}
-                    >Youtube</a
-                ></span
-            >
-        </div>
-        <img
-            src={navigate.src}
-            alt=""
-            class="col-span-6 mt-30 mb-12 order-2 sm:order-3 invert dark:invert-0"
-        />
-
-        <p class="col-span-6 sm:col-span-3 text-neutral-500 order-5 sm:order-4">
-            © Braga Technologies 2024
-        </p>
-        <span
-            class="col-span-6 sm:col-span-3 sm:flex justify-between text-neutral-500 order-4 sm:order-5 border-t sm:border-0 border-neutral-700 mt-8 sm:mt-0 pt-6 sm:pt-0 mb-9 sm:mb-0 space-y-2"
-            ><p>Back to top &uarr;</p>
-            <p>Information Security Policy</p>
-            <p>Terms and Condition</p></span
-        >
-    </section>
+    <p class='col-span-6 sm:col-span-3 text-neutral-500 order-5 sm:order-4'>
+      © Braga Technologies 2024
+    </p>
+    <span
+      class='col-span-6 sm:col-span-3 sm:flex justify-between text-neutral-500 order-4 sm:order-5 border-t sm:border-0 border-neutral-700 mt-8 sm:mt-0 pt-6 sm:pt-0 mb-9 sm:mb-0 space-y-2'
+      ><p>Back to top &uarr;</p>
+      <p>Information Security Policy</p>
+      <p>Terms and Condition</p></span
+    >
+  </section>
 </div>
 
 <style>
-    .article.dark h6 {
-        color: var(--color-stone-50);
-    }
+  .article.dark h6 {
+    color: var(--color-stone-50);
+  }
 
-    .article.dark p {
-        color: var(--color-neutral-400);
-        margin-top: calc(var(--spacing) * 1);
-    }
+  .article.dark p {
+    color: var(--color-neutral-400);
+    margin-top: calc(var(--spacing) * 1);
+  }
 
-    .article.light h6 {
-        color: #161414;
-    }
+  .article.light h6 {
+    color: #161414;
+  }
 
-    .article.light p {
-        color: #4f4d4a; /* Dark mode color */
-    }
+  .article.light p {
+    color: #4f4d4a; /* Dark mode color */
+  }
 </style>

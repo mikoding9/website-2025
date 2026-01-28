@@ -90,7 +90,7 @@ const comments = [
           imgs.map((e, i) => (
             <img
               src={e.src}
-              alt=''
+              alt={`Team member ${i + 1}`}
               class={
                 "absolute top-0 md:top-[75px] left-1/2 -translate-x-1/2 scale-150 md:scale-150 w-[800px] md:w-[1858px] h-full object-cover object-center carousel-set  " +
                 (i === 0 ? "" : "hide")
@@ -222,11 +222,11 @@ const comments = [
       // Update trigger indicators
       elements.triggers[currentIndex]?.classList.replace(
         "bg-orange-800",
-        "bg-neutral-400"
+        "bg-neutral-400",
       );
       elements.triggers[targetIndexZero]?.classList.replace(
         "bg-neutral-400",
-        "bg-orange-800"
+        "bg-orange-800",
       );
 
       currentImg = targetIndex;
@@ -304,12 +304,12 @@ const comments = [
 
     // Optional: Pause auto-play on hover
     const carouselContainer = document.querySelector(
-      "[data-carousel-container]"
+      "[data-carousel-container]",
     );
     if (carouselContainer) {
       carouselContainer.addEventListener("mouseenter", stopAutoPlay);
       carouselContainer.addEventListener("mouseleave", () =>
-        startAutoPlay(5000)
+        startAutoPlay(5000),
       );
     }
 
