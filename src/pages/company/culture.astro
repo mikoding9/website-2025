@@ -5,7 +5,12 @@ import Main from "../../components/culture/Main.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout theme='dark' isBlack={true} hideGridOnMobile={true}>
+<Layout
+  theme='dark'
+  isBlack={true}
+  hideGridOnMobile={true}
+  description="Discover Braga's company culture, values, and what makes our team passionate about delivering innovative geospatial solutions."
+>
   <div class='w-full max-w-full overflow-x-hidden'>
     <Hero /><Main /><CTA />
   </div>
@@ -59,7 +64,7 @@ import Layout from "../../layouts/Layout.astro";
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.1 },
   );
 
   // Observe all animated elements
@@ -87,7 +92,7 @@ import Layout from "../../layouts/Layout.astro";
     max-width: 100% !important;
     overflow: hidden !important;
   }
-  
+
   #canvas-1 canvas,
   #canvas-1 svg {
     width: 100% !important;

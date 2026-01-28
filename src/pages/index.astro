@@ -13,176 +13,179 @@ import { fetchLandingPage } from "../utils/api";
 const landingPageData = await fetchLandingPage();
 ---
 
-<Layout theme="dark">
-	<div class="typo-landing">
-		<Hero
-			headline={landingPageData.hero.headline}
-			subheadline={landingPageData.hero.subheadline}
-			ctaText={landingPageData.hero.ctaText}
-			ctaLink={landingPageData.hero.ctaLink}
-			partnerLogos={landingPageData.hero.partnerLogos}
-		/>
-		<Service
-			sectionTag={landingPageData.service.sectionTag}
-			headline={landingPageData.service.headline}
-			description={landingPageData.service.description}
-			services={landingPageData.service.services}
-		/>
-		<Geodashboard
-			headline={landingPageData.geodashboard.headline}
-			description={landingPageData.geodashboard.description}
-			ctaText={landingPageData.geodashboard.ctaText}
-			features={landingPageData.geodashboard.features}
-		/>
-		<Logbook
-			headline={landingPageData.logbook.headline}
-			description={landingPageData.logbook.description}
-			ctaText={landingPageData.logbook.ctaText}
-			features={landingPageData.logbook.features}
-		/>
-		<Testimoni
-			sectionTag={landingPageData.testimoni.sectionTag}
-			headline={landingPageData.testimoni.headline}
-			description={landingPageData.testimoni.description}
-			industries={landingPageData.testimoni.industries}
-		/>
-		<Works
-			sectionTag={landingPageData.works.sectionTag}
-			headline={landingPageData.works.headline}
-			description={landingPageData.works.description}
-			ctaText={landingPageData.works.ctaText}
-		/>
-		<Contact
-			headline={landingPageData.contact.headline}
-			description={landingPageData.contact.description}
-			ctaText={landingPageData.contact.ctaText}
-		/>
-	</div>
+<Layout
+  theme='dark'
+  description='Braga combines spatial data infrastructure, geospatial expertise, and cutting-edge technology to empower organizations with location intelligence solutions.'
+>
+  <div class='typo-landing'>
+    <Hero
+      headline={landingPageData.hero.headline}
+      subheadline={landingPageData.hero.subheadline}
+      ctaText={landingPageData.hero.ctaText}
+      ctaLink={landingPageData.hero.ctaLink}
+      partnerLogos={landingPageData.hero.partnerLogos}
+    />
+    <Service
+      sectionTag={landingPageData.service.sectionTag}
+      headline={landingPageData.service.headline}
+      description={landingPageData.service.description}
+      services={landingPageData.service.services}
+    />
+    <Geodashboard
+      headline={landingPageData.geodashboard.headline}
+      description={landingPageData.geodashboard.description}
+      ctaText={landingPageData.geodashboard.ctaText}
+      features={landingPageData.geodashboard.features}
+    />
+    <Logbook
+      headline={landingPageData.logbook.headline}
+      description={landingPageData.logbook.description}
+      ctaText={landingPageData.logbook.ctaText}
+      features={landingPageData.logbook.features}
+    />
+    <Testimoni
+      sectionTag={landingPageData.testimoni.sectionTag}
+      headline={landingPageData.testimoni.headline}
+      description={landingPageData.testimoni.description}
+      industries={landingPageData.testimoni.industries}
+    />
+    <Works
+      sectionTag={landingPageData.works.sectionTag}
+      headline={landingPageData.works.headline}
+      description={landingPageData.works.description}
+      ctaText={landingPageData.works.ctaText}
+    />
+    <Contact
+      headline={landingPageData.contact.headline}
+      description={landingPageData.contact.description}
+      ctaText={landingPageData.contact.ctaText}
+    />
+  </div>
 </Layout>
 
 <script is:inline client:load>
-	const script = document.createElement("script");
-	script.src =
-		"https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.13.0/lottie.min.js";
-	script.onload = () => {
-		window.lottie.loadAnimation({
-			container: document.getElementById("canvas-1"),
-			renderer: "canvas", // svg / canvas / html
-			loop: true,
-			autoplay: true,
-			path: "/animation/service-1.json",
-		});
-		window.lottie.loadAnimation({
-			container: document.getElementById("canvas-2"),
-			renderer: "canvas", // svg / canvas / html
-			loop: true,
-			autoplay: true,
-			path: "/animation/service-2.json",
-		});
-		window.lottie.loadAnimation({
-			container: document.getElementById("canvas-3"),
-			renderer: "canvas", // svg / canvas / html
-			loop: true,
-			autoplay: true,
-			path: "/animation/service-3.json",
-		});
-		window.lottie.loadAnimation({
-			container: document.getElementById("canvas-4"),
-			renderer: "canvas", // svg / canvas / html
-			loop: true,
-			autoplay: true,
-			path: "/animation/service-4.json",
-		});
-	};
-	document.body.appendChild(script);
+  const script = document.createElement("script");
+  script.src =
+    "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.13.0/lottie.min.js";
+  script.onload = () => {
+    window.lottie.loadAnimation({
+      container: document.getElementById("canvas-1"),
+      renderer: "canvas", // svg / canvas / html
+      loop: true,
+      autoplay: true,
+      path: "/animation/service-1.json",
+    });
+    window.lottie.loadAnimation({
+      container: document.getElementById("canvas-2"),
+      renderer: "canvas", // svg / canvas / html
+      loop: true,
+      autoplay: true,
+      path: "/animation/service-2.json",
+    });
+    window.lottie.loadAnimation({
+      container: document.getElementById("canvas-3"),
+      renderer: "canvas", // svg / canvas / html
+      loop: true,
+      autoplay: true,
+      path: "/animation/service-3.json",
+    });
+    window.lottie.loadAnimation({
+      container: document.getElementById("canvas-4"),
+      renderer: "canvas", // svg / canvas / html
+      loop: true,
+      autoplay: true,
+      path: "/animation/service-4.json",
+    });
+  };
+  document.body.appendChild(script);
 
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add("visible");
-				}
-			});
-		},
-		{ threshold: 0.1 },
-	);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
 
-	// Observe all animated elements
-	document
-		.querySelectorAll(".fade-in, .fade-in-up")
-		.forEach((el) => observer.observe(el));
+  // Observe all animated elements
+  document
+    .querySelectorAll(".fade-in, .fade-in-up")
+    .forEach((el) => observer.observe(el));
 </script>
 
 <style is:global>
-	.typo-landing h1,
-	.typo-landing h2,
-	.typo-landing h3,
-	.typo-landing h4,
-	.typo-landing h5,
-	.typo-landing h6 {
-		font-family: "Host-Grotesk", sans-serif;
-	}
+  .typo-landing h1,
+  .typo-landing h2,
+  .typo-landing h3,
+  .typo-landing h4,
+  .typo-landing h5,
+  .typo-landing h6 {
+    font-family: "Host-Grotesk", sans-serif;
+  }
 
-	.gradient-border-1 {
-		position: relative;
-		border-radius: 4px;
-	}
+  .gradient-border-1 {
+    position: relative;
+    border-radius: 4px;
+  }
 
-	.gradient-border-1::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		padding: 1px;
-		background: #232221;
-		border-radius: inherit;
-		mask:
-			linear-gradient(#000 0 0) content-box,
-			linear-gradient(#000 0 0);
-		mask-composite: xor;
-		-webkit-mask-composite: xor;
-		transition: background 0.3s ease; /* Smooth transition */
-		pointer-events: none;
-	}
+  .gradient-border-1::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: #232221;
+    border-radius: inherit;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    transition: background 0.3s ease; /* Smooth transition */
+    pointer-events: none;
+  }
 
-	.gradient-border-1:hover::before {
-		background: linear-gradient(
-			180deg,
-			rgba(205, 84, 27, 0),
-			rgb(243, 106, 29)
-		);
-	}
+  .gradient-border-1:hover::before {
+    background: linear-gradient(
+      180deg,
+      rgba(205, 84, 27, 0),
+      rgb(243, 106, 29)
+    );
+  }
 
-	/* Initial hidden state */
-	.fade-in-up {
-		opacity: 0;
-		transform: translateY(30px);
-	}
+  /* Initial hidden state */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 
-	/* Animation when visible */
-	.fade-in-up.visible {
-		animation: fadeInUp 0.75s ease-out forwards;
-	}
+  /* Animation when visible */
+  .fade-in-up.visible {
+    animation: fadeInUp 0.75s ease-out forwards;
+  }
 
-	@keyframes fadeInUp {
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-	/* Initial hidden state */
-	.fade-in {
-		opacity: 0;
-	}
+  /* Initial hidden state */
+  .fade-in {
+    opacity: 0;
+  }
 
-	/* Animation when visible */
-	.fade-in.visible {
-		animation: fadeIn 0.75s ease-out forwards;
-	}
+  /* Animation when visible */
+  .fade-in.visible {
+    animation: fadeIn 0.75s ease-out forwards;
+  }
 
-	@keyframes fadeIn {
-		to {
-			opacity: 1;
-		}
-	}
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 </style>

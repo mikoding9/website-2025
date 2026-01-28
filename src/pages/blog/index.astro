@@ -4,51 +4,55 @@ import Hero from "../../components/blog/Hero.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout theme="light"><Hero /><CTA /></Layout>
+<Layout
+  theme='light'
+  description="Read about geospatial technology, GIS solutions, location intelligence insights, and industry trends from Braga's expert team."
+  ><Hero /><CTA /></Layout
+>
 
 <script is:inline client:load>
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        },
-        { threshold: 0.1 },
-    );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
 
-    // Observe all animated elements
-    document
-        .querySelectorAll(".fade-in-up")
-        .forEach((el) => observer.observe(el));
+  // Observe all animated elements
+  document
+    .querySelectorAll(".fade-in-up")
+    .forEach((el) => observer.observe(el));
 </script>
 
 <style is:global>
-    .typo-landing h1,
-    .typo-landing h2,
-    .typo-landing h3,
-    .typo-landing h4,
-    .typo-landing h5,
-    .typo-landing h6 {
-        font-family: "Host-Grotesk", sans-serif;
-    }
+  .typo-landing h1,
+  .typo-landing h2,
+  .typo-landing h3,
+  .typo-landing h4,
+  .typo-landing h5,
+  .typo-landing h6 {
+    font-family: "Host-Grotesk", sans-serif;
+  }
 
-    /* Initial hidden state */
-    .fade-in-up {
-        opacity: 0;
-        transform: translateY(30px);
-    }
+  /* Initial hidden state */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 
-    /* Animation when visible */
-    .fade-in-up.visible {
-        animation: fadeInUp 0.75s ease-out forwards;
-    }
+  /* Animation when visible */
+  .fade-in-up.visible {
+    animation: fadeInUp 0.75s ease-out forwards;
+  }
 
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 </style>

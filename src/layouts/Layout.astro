@@ -10,515 +10,489 @@ import Footer from "../components/home/Footer.astro";
 import type { LayoutProps } from "../types/navigation";
 import OrangeFooter from "./OrangeFooter.astro";
 
-const { theme, orangeFooter, hideGridOnMobile, isBlack }: LayoutProps =
-	Astro.props;
+const {
+  theme,
+  orangeFooter,
+  hideGridOnMobile,
+  isBlack,
+  description,
+}: LayoutProps = Astro.props;
+
+const defaultDescription =
+  "Braga combines spatial data infrastructure, geospatial expertise, and cutting-edge technology to empower organizations with location intelligence solutions.";
 
 const currentPath = Astro.url.pathname;
 
 const navs = [
-	{ href: "/", label: "Home" },
-	{
-		href: "/products/",
-		label: "Products",
-		dropdowns: [
-			{
-				title: "GeoDashboard",
-				subtitle:
-					"Visualize spatial data, exercise spatial analysis, and gather insights.",
-				href: "https://geodashboard.io/",
-				image: geodImage,
-			},
-			{
-				title: "LogBook",
-				subtitle:
-					"Engaging map creator for your map-based storytelling",
-				href: "https://logbook.id/",
-				image: logbookImage,
-			},
-			{
-				title: "Poin",
-				subtitle:
-					"Innovative solutions for geospatial and ground surveys.",
-				href: "/products/poin/",
-				image: poinImage,
-			},
-		],
-	},
-	{ href: "/service/", label: "Services" },
-	{
-		href: "/company/",
-		label: "Company",
-		menus: [
-			{ href: "/company/about/", label: "About" },
-			{ href: "/company/culture/", label: "Culture" },
-			{ href: "/company/career/", label: "Career" },
-		],
-	},
-	{ href: "/initiatives/", label: "Initiatives" },
-	{ href: "/blog/", label: "Blog" },
+  { href: "/", label: "Home" },
+  {
+    href: "/products/",
+    label: "Products",
+    dropdowns: [
+      {
+        title: "GeoDashboard",
+        subtitle:
+          "Visualize spatial data, exercise spatial analysis, and gather insights.",
+        href: "https://geodashboard.io/",
+        image: geodImage,
+      },
+      {
+        title: "LogBook",
+        subtitle: "Engaging map creator for your map-based storytelling",
+        href: "https://logbook.id/",
+        image: logbookImage,
+      },
+      {
+        title: "Poin",
+        subtitle: "Innovative solutions for geospatial and ground surveys.",
+        href: "/products/poin/",
+        image: poinImage,
+      },
+    ],
+  },
+  { href: "/service/", label: "Services" },
+  {
+    href: "/company/",
+    label: "Company",
+    menus: [
+      { href: "/company/about/", label: "About" },
+      { href: "/company/culture/", label: "Culture" },
+      { href: "/company/career/", label: "Career" },
+    ],
+  },
+  { href: "/initiatives/", label: "Initiatives" },
+  { href: "/blog/", label: "Blog" },
 ];
 ---
 
 <!doctype html>
-<html lang="en" class="w-full">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, viewport-fit=cover"
-		/>
-		<link rel="icon" type="image/svg+xml" href="/nav-icon-light.svg" id="favicon" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Braga Website</title>
-		<script is:inline>
-			const setFavicon = () => {
-				const favicon = document.getElementById('favicon');
-				const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				if (favicon) {
-					favicon.href = isDark ? '/nav-icon-dark.svg' : '/nav-icon-light.svg';
-				}
-			};
+<html lang='en' class='w-full'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta
+      name='viewport'
+      content='width=device-width, initial-scale=1, viewport-fit=cover'
+    />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/nav-icon-light.svg'
+      id='favicon'
+    />
+    <meta name='generator' content={Astro.generator} />
+    <meta name='description' content={description || defaultDescription} />
+    <title>Braga Website</title>
+    <script is:inline>
+      const setFavicon = () => {
+        const favicon = document.getElementById("favicon");
+        const isDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        if (favicon) {
+          favicon.href = isDark ? "/nav-icon-dark.svg" : "/nav-icon-light.svg";
+        }
+      };
 
-			setFavicon();
+      setFavicon();
 
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setFavicon);
-		</script>
-	</head>
-	<body
-		class={theme +
-			" relative w-full bg-stone-100 font-inter " +
-			(isBlack ? "dark:bg-black" : "dark:bg-neutral-900")}
-	>
-		<div
-			class={`fixed w-full h-full -z-20 grid grid-cols-4 gap-6 px-3 sm:px-6 stroke-fade-in ${hideGridOnMobile ? "hidden lg:grid" : ""}`}
-		>
-			<div class="border dark:border-neutral-800 border-stone-200"></div>
-			<div class="border dark:border-neutral-800 border-stone-200"></div>
-			<div class="border dark:border-neutral-800 border-stone-200"></div>
-			<div class="border dark:border-neutral-800 border-stone-200"></div>
-		</div>
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", setFavicon);
+    </script>
+  </head>
+  <body
+    class={theme +
+      " relative w-full bg-stone-100 font-inter " +
+      (isBlack ? "dark:bg-black" : "dark:bg-neutral-900")}
+  >
+    <div
+      class={`fixed w-full h-full -z-20 grid grid-cols-4 gap-6 px-3 sm:px-6 stroke-fade-in ${hideGridOnMobile ? "hidden lg:grid" : ""}`}
+    >
+      <div class='border dark:border-neutral-800 border-stone-200'></div>
+      <div class='border dark:border-neutral-800 border-stone-200'></div>
+      <div class='border dark:border-neutral-800 border-stone-200'></div>
+      <div class='border dark:border-neutral-800 border-stone-200'></div>
+    </div>
 
-		<div
-			class={theme +
-				" px-3 sm:px-6 pt-3 sm:pt-6 w-full sticky top-0 z-10 fade-in-down"}
-		>
-			<div
-				class="w-full flex items-center justify-between border border-stone-200 dark:border-neutral-800 p-2 rounded-sm text-neutral-800 dark:text-neutral-400 space-x-2 bg-stone-50 dark:bg-black/8 backdrop-blur-md"
-			>
-				<div
-					class="border border-stone-200 dark:border-neutral-800 p-3 rounded-sm"
-				>
-					<img
-						src={bragaLogo.src}
-						alt="braga logo"
-						class="invert dark:invert-0"
-					/>
-				</div>
+    <div
+      class={theme +
+        " px-3 sm:px-6 pt-3 sm:pt-6 w-full sticky top-0 z-10 fade-in-down"}
+    >
+      <div
+        class='w-full flex items-center justify-between border border-stone-200 dark:border-neutral-800 p-2 rounded-sm text-neutral-800 dark:text-neutral-400 space-x-2 bg-stone-50 dark:bg-black/8 backdrop-blur-md'
+      >
+        <div
+          class='border border-stone-200 dark:border-neutral-800 p-3 rounded-sm'
+        >
+          <img
+            src={bragaLogo.src}
+            alt='braga logo'
+            class='invert dark:invert-0'
+          />
+        </div>
 
-				<nav class="grow hidden lg:flex space-x-3 text-center text-xs">
-					{
-						navs.map(({ href, label, dropdowns, menus }) =>
-							dropdowns?.length ? (
-								<div class="dropdown z-10 relative">
-									<button class="cursor-pointer w-20 dark:hover:text-neutral-200 hover:border border-stone-200 dark:border-neutral-700 rounded-sm h-9 flex justify-center items-center">
-										{label}
-									</button>
-									<div class="content dropdown-products p-3 space-x-3 bg-stone-100 dark:bg-neutral-900/50 shadow-md rounded-lg border border-stone-300 dark:border-neutral-700 absolute left-0 top-9">
-										{dropdowns.map(
-											({
-												image,
-												href,
-												title,
-												subtitle,
-											}) => (
-												<a
-													target={
-														href.includes("https")
-															? "_blank"
-															: "_self"
-													}
-													href={href}
-													class="w-56 text-xs text-left cursor-pointer bg-stone-50 hover:bg-white dark:bg-transparent dark:hover:bg-[#232221] border border-stone-200 dark:border-none p-2 rounded-lg transition-colors duration-200"
-												>
-													<img
-														src={image.src}
-														alt=""
-														class="w-full"
-													/>
-													<h6 class="text-neutral-800 dark:text-stone-200 my-2 font-semibold">
-														{title}
-													</h6>
-													<p class="text-neutral-700 dark:text-neutral-400">
-														{subtitle}
-													</p>
-												</a>
-											),
-										)}
-									</div>
-								</div>
-							) : menus?.length ? (
-								<div class="dropdown z-10 relative">
-									<button class="cursor-pointer w-20 dark:hover:text-neutral-200 hover:border border-stone-200 dark:border-neutral-700 rounded-sm h-9 flex justify-center items-center">
-										{label}
-									</button>
-									<div class="content flex-col p-3 space-y-3 bg-stone-100 dark:bg-neutral-900/50 shadow-md rounded-lg border border-stone-300 dark:border-neutral-700 absolute left-0 top-9">
-										{menus.map(({ label, href }) => (
-											<a
-												href={href}
-												class="w-56 text-xs text-left cursor-pointer hover:bg-stone-50 dark:bg-transparent dark:hover:bg-[#232221] p-2 rounded-lg transition-colors duration-200"
-											>
-												<p class="text-neutral-700 dark:text-neutral-400">
-													{label}
-												</p>
-											</a>
-										))}
-									</div>
-								</div>
-							) : (
-								<a
-									class="w-20 dark:hover:text-neutral-200 hover:border border-stone-200 dark:border-neutral-700 rounded-sm h-9 flex justify-center items-center"
-									href={href}
-								>
-									{label}
-								</a>
-							),
-						)
-					}
-				</nav>
-				<div
-					class="border p-2 border-stone-200 dark:border-neutral-800 rounded-sm flex items-center space-x-2 text-xs"
-				>
-					<div class="hidden lg:block">
-						<button class={`ml-1 ${currentPath === "/products/poin" || currentPath === "/products/poin/" ? "text-[#EA374C]" : "text-orange-500"}`}>EN</button>
-						<button class="text-black dark:text-white">ID</button>
-					</div>
-					<a
-						href="/contact/"
-						class={`rounded-sm text-white py-1.5 px-3 ${currentPath === "/products/poin" || currentPath === "/products/poin/" ? "bg-[#EA374C]" : "bg-[#CD541B] dark:bg-orange-700"}`}
-						>Contact</a
-					>
-					<button id="burger-menu" class="lg:hidden">
-						<img src={burgerIcon.src} alt="" />
-					</button>
-				</div>
-			</div>
-		</div>
+        <nav class='grow hidden lg:flex space-x-3 text-center text-xs'>
+          {
+            navs.map(({ href, label, dropdowns, menus }) =>
+              dropdowns?.length ? (
+                <div class='dropdown z-10 relative'>
+                  <button class='cursor-pointer w-20 dark:hover:text-neutral-200 hover:border border-stone-200 dark:border-neutral-700 rounded-sm h-9 flex justify-center items-center'>
+                    {label}
+                  </button>
+                  <div class='content dropdown-products p-3 space-x-3 bg-stone-100 dark:bg-neutral-900/50 shadow-md rounded-lg border border-stone-300 dark:border-neutral-700 absolute left-0 top-9'>
+                    {dropdowns.map(({ image, href, title, subtitle }) => (
+                      <a
+                        target={href.includes("https") ? "_blank" : "_self"}
+                        href={href}
+                        class='w-56 text-xs text-left cursor-pointer bg-stone-50 hover:bg-white dark:bg-transparent dark:hover:bg-[#232221] border border-stone-200 dark:border-none p-2 rounded-lg transition-colors duration-200'
+                      >
+                        <img src={image.src} alt='' class='w-full' />
+                        <h6 class='text-neutral-800 dark:text-stone-200 my-2 font-semibold'>
+                          {title}
+                        </h6>
+                        <p class='text-neutral-700 dark:text-neutral-400'>
+                          {subtitle}
+                        </p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : menus?.length ? (
+                <div class='dropdown z-10 relative'>
+                  <button class='cursor-pointer w-20 dark:hover:text-neutral-200 hover:border border-stone-200 dark:border-neutral-700 rounded-sm h-9 flex justify-center items-center'>
+                    {label}
+                  </button>
+                  <div class='content flex-col p-3 space-y-3 bg-stone-100 dark:bg-neutral-900/50 shadow-md rounded-lg border border-stone-300 dark:border-neutral-700 absolute left-0 top-9'>
+                    {menus.map(({ label, href }) => (
+                      <a
+                        href={href}
+                        class='w-56 text-xs text-left cursor-pointer hover:bg-stone-50 dark:bg-transparent dark:hover:bg-[#232221] p-2 rounded-lg transition-colors duration-200'
+                      >
+                        <p class='text-neutral-700 dark:text-neutral-400'>
+                          {label}
+                        </p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a
+                  class='w-20 dark:hover:text-neutral-200 hover:border border-stone-200 dark:border-neutral-700 rounded-sm h-9 flex justify-center items-center'
+                  href={href}
+                >
+                  {label}
+                </a>
+              ),
+            )
+          }
+        </nav>
+        <div
+          class='border p-2 border-stone-200 dark:border-neutral-800 rounded-sm flex items-center space-x-2 text-xs'
+        >
+          <div class='hidden lg:block'>
+            <button
+              class={`ml-1 ${currentPath === "/products/poin" || currentPath === "/products/poin/" ? "text-[#EA374C]" : "text-orange-500"}`}
+              >EN</button
+            >
+            <button class='text-black dark:text-white'>ID</button>
+          </div>
+          <a
+            href='/contact/'
+            class={`rounded-sm text-white py-1.5 px-3 ${currentPath === "/products/poin" || currentPath === "/products/poin/" ? "bg-[#EA374C]" : "bg-[#CD541B] dark:bg-orange-700"}`}
+            >Contact</a
+          >
+          <button id='burger-menu' class='lg:hidden'>
+            <img src={burgerIcon.src} alt='' />
+          </button>
+        </div>
+      </div>
+    </div>
 
-		<!-- Mobile Menu -->
-		<div
-			id="mobile-menu"
-			class="hidden fixed inset-0 z-50 bg-black text-white overflow-y-auto transition-all duration-500 ease-out"
-		>
-			<div
-				id="mobile-menu-content"
-				class="flex flex-col min-h-full p-6 transition-transform duration-500 ease-out"
-			>
-				<div class="flex justify-between items-center mb-8">
-					<img
-						src={bragaLogo.src}
-						alt="braga logo"
-						class="invert-0 w-24"
-					/>
-					<button
-						id="close-menu"
-						class="text-white text-4xl leading-none">&times;</button
-					>
-				</div>
+    <!-- Mobile Menu -->
+    <div
+      id='mobile-menu'
+      class='hidden fixed inset-0 z-50 bg-black text-white overflow-y-auto transition-all duration-500 ease-out'
+    >
+      <div
+        id='mobile-menu-content'
+        class='flex flex-col min-h-full p-6 transition-transform duration-500 ease-out'
+      >
+        <div class='flex justify-between items-center mb-8'>
+          <img src={bragaLogo.src} alt='braga logo' class='invert-0 w-24' />
+          <button id='close-menu' class='text-white text-4xl leading-none'
+            >&times;</button
+          >
+        </div>
 
-				<nav class="flex flex-col space-y-6 text-base">
-					<a
-						href="/"
-						class="text-neutral-300 py-2 mobile-menu-item"
-						style="animation-delay: 0.1s">Home</a
-					>
+        <nav class='flex flex-col space-y-6 text-base'>
+          <a
+            href='/'
+            class='text-neutral-300 py-2 mobile-menu-item'
+            style='animation-delay: 0.1s'>Home</a
+          >
 
-					<div class="mobile-menu-item" style="animation-delay: 0.2s">
-						<p
-							class="text-neutral-400 text-sm mb-3 uppercase tracking-wider"
-						>
-							Product
-						</p>
-						<div class="flex flex-col space-y-4 ml-4">
-							<a
-								href="https://geodashboard.io/"
-								target="_blank"
-								class="py-2"
-							>
-								<h6 class="text-white font-semibold mb-1">
-									GeoDashboard
-								</h6>
-								<p class="text-sm text-neutral-400">
-									Visualize spatial data, exercise spatial
-									analysis, and gather insights.
-								</p>
-							</a>
-							<a
-								href="https://logbook.id/"
-								target="_blank"
-								class="py-2"
-							>
-								<h6 class="text-white font-semibold mb-1">
-									LogBook
-								</h6>
-								<p class="text-sm text-neutral-400">
-									Engaging map creator for your map-based
-									storytelling
-								</p>
-							</a>
-							<a href="/products/poin/" class="py-2">
-								<h6 class="text-white font-semibold mb-1">
-									Poin
-								</h6>
-								<p class="text-sm text-neutral-400">
-									Innovative solutions for geospatial and
-									ground surveys.
-								</p>
-							</a>
-						</div>
-					</div>
+          <div class='mobile-menu-item' style='animation-delay: 0.2s'>
+            <p class='text-neutral-400 text-sm mb-3 uppercase tracking-wider'>
+              Product
+            </p>
+            <div class='flex flex-col space-y-4 ml-4'>
+              <a href='https://geodashboard.io/' target='_blank' class='py-2'>
+                <h6 class='text-white font-semibold mb-1'>GeoDashboard</h6>
+                <p class='text-sm text-neutral-400'>
+                  Visualize spatial data, exercise spatial analysis, and gather
+                  insights.
+                </p>
+              </a>
+              <a href='https://logbook.id/' target='_blank' class='py-2'>
+                <h6 class='text-white font-semibold mb-1'>LogBook</h6>
+                <p class='text-sm text-neutral-400'>
+                  Engaging map creator for your map-based storytelling
+                </p>
+              </a>
+              <a href='/products/poin/' class='py-2'>
+                <h6 class='text-white font-semibold mb-1'>Poin</h6>
+                <p class='text-sm text-neutral-400'>
+                  Innovative solutions for geospatial and ground surveys.
+                </p>
+              </a>
+            </div>
+          </div>
 
-					<a
-						href="/service/"
-						class="text-neutral-300 py-2 mobile-menu-item"
-						style="animation-delay: 0.3s">Services</a
-					>
+          <a
+            href='/service/'
+            class='text-neutral-300 py-2 mobile-menu-item'
+            style='animation-delay: 0.3s'>Services</a
+          >
 
-					<div class="mobile-menu-item" style="animation-delay: 0.4s">
-						<p
-							class="text-neutral-400 text-sm mb-3 uppercase tracking-wider"
-						>
-							Company
-						</p>
-						<div class="flex flex-col space-y-3 ml-4">
-							<a
-								href="/company/about/"
-								class="text-neutral-300 py-2">About</a
-							>
-							<a
-								href="/company/culture/"
-								class="text-neutral-300 py-2">Culture</a
-							>
-							<a
-								href="/company/career/"
-								class="text-neutral-300 py-2">Career</a
-							>
-						</div>
-					</div>
+          <div class='mobile-menu-item' style='animation-delay: 0.4s'>
+            <p class='text-neutral-400 text-sm mb-3 uppercase tracking-wider'>
+              Company
+            </p>
+            <div class='flex flex-col space-y-3 ml-4'>
+              <a href='/company/about/' class='text-neutral-300 py-2'>About</a>
+              <a href='/company/culture/' class='text-neutral-300 py-2'
+                >Culture</a
+              >
+              <a href='/company/career/' class='text-neutral-300 py-2'>Career</a
+              >
+            </div>
+          </div>
 
-					<a
-						href="/initiatives/"
-						class="text-neutral-300 py-2 mobile-menu-item"
-						style="animation-delay: 0.5s">Initiatives</a
-					>
-					<a
-						href="/blog/"
-						class="text-neutral-300 py-2 mobile-menu-item"
-						style="animation-delay: 0.6s">Blog</a
-					>
+          <a
+            href='/initiatives/'
+            class='text-neutral-300 py-2 mobile-menu-item'
+            style='animation-delay: 0.5s'>Initiatives</a
+          >
+          <a
+            href='/blog/'
+            class='text-neutral-300 py-2 mobile-menu-item'
+            style='animation-delay: 0.6s'>Blog</a
+          >
 
-					<div
-						class="pt-6 border-t border-neutral-800 mobile-menu-item"
-						style="animation-delay: 0.7s"
-					>
-						<div class="flex justify-center space-x-4 text-sm">
-							<button id="mobile-lang-en" class="text-orange-500">EN</button>
-							<button class="text-white">ID</button>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</div>
+          <div
+            class='pt-6 border-t border-neutral-800 mobile-menu-item'
+            style='animation-delay: 0.7s'
+          >
+            <div class='flex justify-center space-x-4 text-sm'>
+              <button id='mobile-lang-en' class='text-orange-500'>EN</button>
+              <button class='text-white'>ID</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
 
-		<slot />
+    <slot />
 
-		{orangeFooter ? <OrangeFooter /> : <Footer theme={theme} />}
-		<div class="w-full h-6"></div>
+    {orangeFooter ? <OrangeFooter /> : <Footer theme={theme} />}
+    <div class='w-full h-6'></div>
 
-		<div
-			id="splash"
-			class="fixed inset-0 z-50 grid place-items-center bg-stone-50 dark:bg-neutral-900
+    <div
+      id='splash'
+      class='fixed inset-0 z-50 grid place-items-center bg-stone-50 dark:bg-neutral-900
          transition-opacity duration-700 ease-out
-         motion-reduce:transition-none"
-			aria-hidden="true"
-		>
-			<img src={bragaLogo.src} alt="" class="invert dark:invert-0" />
-		</div>
-	</body>
+         motion-reduce:transition-none'
+      aria-hidden='true'
+    >
+      <img src={bragaLogo.src} alt='Braga logo' class='invert dark:invert-0' />
+    </div>
+  </body>
 </html>
 
 <script is:inline client:load>
-	// Fade out after the page is ready; you can choose the trigger:
-	// 1) after DOM loaded + a small delay
-	// 2) after full window 'load' (waits for images, etc.)
-	const TRIGGER = "dom"; // 'dom' | 'load'
+  // Fade out after the page is ready; you can choose the trigger:
+  // 1) after DOM loaded + a small delay
+  // 2) after full window 'load' (waits for images, etc.)
+  const TRIGGER = "dom"; // 'dom' | 'load'
 
-	const run = () => {
-		const splash = document.getElementById("splash");
-		if (!splash) return;
+  const run = () => {
+    const splash = document.getElementById("splash");
+    if (!splash) return;
 
-		// Respect reduced motion: remove instantly
-		const prefersReduced = window.matchMedia(
-			"(prefers-reduced-motion: reduce)",
-		).matches;
-		if (prefersReduced) {
-			splash.remove();
-			return;
-		}
+    // Respect reduced motion: remove instantly
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduced) {
+      splash.remove();
+      return;
+    }
 
-		// Start fade
-		requestAnimationFrame(() => {
-			splash.classList.add("opacity-0"); // Tailwind transition fades it out
-		});
+    // Start fade
+    requestAnimationFrame(() => {
+      splash.classList.add("opacity-0"); // Tailwind transition fades it out
+    });
 
-		// After CSS transition ends, remove from DOM
-		const onEnd = (e) => {
-			if (e.propertyName === "opacity") {
-				splash.remove();
-				splash.removeEventListener("transitionend", onEnd);
-			}
-		};
-		splash.addEventListener("transitionend", onEnd);
-	};
+    // After CSS transition ends, remove from DOM
+    const onEnd = (e) => {
+      if (e.propertyName === "opacity") {
+        splash.remove();
+        splash.removeEventListener("transitionend", onEnd);
+      }
+    };
+    splash.addEventListener("transitionend", onEnd);
+  };
 
-	if (TRIGGER === "load") {
-		window.addEventListener("load", () => setTimeout(run, 200)); // tiny buffer
-	} else {
-		document.addEventListener("DOMContentLoaded", () => {
-			setTimeout(run, 350);
-		}); // short brand moment
-	}
+  if (TRIGGER === "load") {
+    window.addEventListener("load", () => setTimeout(run, 200)); // tiny buffer
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(run, 350);
+    }); // short brand moment
+  }
 </script>
 
 <script is:inline>
-	document.addEventListener("DOMContentLoaded", () => {
-		const burgerBtn = document.getElementById("burger-menu");
-		const closeBtn = document.getElementById("close-menu");
-		const mobileMenu = document.getElementById("mobile-menu");
-		const mobileMenuContent = document.getElementById(
-			"mobile-menu-content",
-		);
-		const mobileLangEn = document.getElementById("mobile-lang-en");
+  document.addEventListener("DOMContentLoaded", () => {
+    const burgerBtn = document.getElementById("burger-menu");
+    const closeBtn = document.getElementById("close-menu");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuContent = document.getElementById("mobile-menu-content");
+    const mobileLangEn = document.getElementById("mobile-lang-en");
 
-		// Update mobile language button color based on current path
-		if (mobileLangEn) {
-			const currentPath = window.location.pathname;
-			if (currentPath === "/products/poin" || currentPath === "/products/poin/") {
-				mobileLangEn.style.color = "#EA374C";
-			}
-		}
+    // Update mobile language button color based on current path
+    if (mobileLangEn) {
+      const currentPath = window.location.pathname;
+      if (
+        currentPath === "/products/poin" ||
+        currentPath === "/products/poin/"
+      ) {
+        mobileLangEn.style.color = "#EA374C";
+      }
+    }
 
-		const openMenu = () => {
-			if (mobileMenu && mobileMenuContent) {
-				mobileMenu.classList.remove("hidden");
-				mobileMenu.style.opacity = "0";
-				requestAnimationFrame(() => {
-					mobileMenu.style.opacity = "1";
-					mobileMenuContent.style.transform = "translateX(0)";
-				});
-				document.body.style.overflow = "hidden";
-			}
-		};
+    const openMenu = () => {
+      if (mobileMenu && mobileMenuContent) {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.style.opacity = "0";
+        requestAnimationFrame(() => {
+          mobileMenu.style.opacity = "1";
+          mobileMenuContent.style.transform = "translateX(0)";
+        });
+        document.body.style.overflow = "hidden";
+      }
+    };
 
-		const closeMenu = () => {
-			if (mobileMenu && mobileMenuContent) {
-				mobileMenu.style.opacity = "0";
-				mobileMenuContent.style.transform = "translateX(-100%)";
-				setTimeout(() => {
-					mobileMenu.classList.add("hidden");
-					document.body.style.overflow = "";
-				}, 500);
-			}
-		};
+    const closeMenu = () => {
+      if (mobileMenu && mobileMenuContent) {
+        mobileMenu.style.opacity = "0";
+        mobileMenuContent.style.transform = "translateX(-100%)";
+        setTimeout(() => {
+          mobileMenu.classList.add("hidden");
+          document.body.style.overflow = "";
+        }, 500);
+      }
+    };
 
-		if (burgerBtn) {
-			burgerBtn.addEventListener("click", openMenu);
-		}
+    if (burgerBtn) {
+      burgerBtn.addEventListener("click", openMenu);
+    }
 
-		if (closeBtn) {
-			closeBtn.addEventListener("click", closeMenu);
-		}
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeMenu);
+    }
 
-		// Close menu when clicking on a link
-		const mobileLinks = mobileMenu?.querySelectorAll("a");
-		mobileLinks?.forEach((link) => {
-			link.addEventListener("click", closeMenu);
-		});
-	});
+    // Close menu when clicking on a link
+    const mobileLinks = mobileMenu?.querySelectorAll("a");
+    mobileLinks?.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+  });
 </script>
 
 <style>
-	.dropdown {
-		display: inline-block;
-	}
-	.dropdown .content {
-		display: none;
-	}
-	.dropdown:hover .content {
-		display: flex;
-	}
+  .dropdown {
+    display: inline-block;
+  }
+  .dropdown .content {
+    display: none;
+  }
+  .dropdown:hover .content {
+    display: flex;
+  }
 
-	@media (min-width: 1024px) and (max-width: 1279px) {
-		.dropdown-products a {
-			width: 180px !important;
-		}
-	}
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .dropdown-products a {
+      width: 180px !important;
+    }
+  }
 
-	@keyframes fadeInDown {
-		0% {
-			opacity: 0;
-			transform: translateY(-20px);
-		}
-		50% {
-			opacity: 0;
-			transform: translateY(-20px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    50% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-	.fade-in-down {
-		animation: fadeInDown 1.4s ease-out;
-	}
+  .fade-in-down {
+    animation: fadeInDown 1.4s ease-out;
+  }
 
-	@keyframes strokeFadeIn {
-		0% {
-			opacity: 0;
-		}
-		50% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
-	}
+  @keyframes strokeFadeIn {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
-	.stroke-fade-in {
-		animation: strokeFadeIn 2.4s ease-out;
-	}
+  .stroke-fade-in {
+    animation: strokeFadeIn 2.4s ease-out;
+  }
 
-	@keyframes slideInFromLeft {
-		0% {
-			opacity: 0;
-			transform: translateX(-30px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
-	#mobile-menu:not(.hidden) .mobile-menu-item {
-		animation: slideInFromLeft 0.5s ease-out forwards;
-		opacity: 0;
-	}
+  #mobile-menu:not(.hidden) .mobile-menu-item {
+    animation: slideInFromLeft 0.5s ease-out forwards;
+    opacity: 0;
+  }
 
-	#mobile-menu-content {
-		transform: translateX(-100%);
-	}
+  #mobile-menu-content {
+    transform: translateX(-100%);
+  }
 
-	#mobile-menu:not(.hidden) #mobile-menu-content {
-		transform: translateX(0);
-	}
+  #mobile-menu:not(.hidden) #mobile-menu-content {
+    transform: translateX(0);
+  }
 </style>

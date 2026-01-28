@@ -5,7 +5,11 @@ import Opportunities from "../../components/career/Opportunities.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout theme='dark' isBlack={true} hideGridOnMobile={true}
+<Layout
+  theme='dark'
+  isBlack={true}
+  hideGridOnMobile={true}
+  description="Join Braga's team of geospatial experts. Explore career opportunities in GIS technology, spatial data analysis, and location intelligence."
   ><Hero /><LifeBraga /><Opportunities /></Layout
 >
 
@@ -18,7 +22,7 @@ import Layout from "../../layouts/Layout.astro";
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.1 },
   );
 
   // Observe all animated elements
