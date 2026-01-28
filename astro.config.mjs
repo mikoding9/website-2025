@@ -1,18 +1,22 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
-import alpinejs from '@astrojs/alpinejs';
+import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
+import sitemap from "@astrojs/sitemap";
+import robotsTxt from "astro-robots-txt";
+
 export default defineConfig({
-  trailingSlash: 'always',
+  site: "https://braga.co.id",
+  trailingSlash: "always",
   prefetch: {
-    prefetchAll: true
+    prefetchAll: true,
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
-  integrations: [alpinejs()]
+  integrations: [alpinejs(), sitemap(), robotsTxt()],
 });
