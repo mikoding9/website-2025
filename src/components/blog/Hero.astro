@@ -313,7 +313,7 @@ const directusToken =
           :href='blog.href'
           class='block w-full py-3 text-center bg-orange-700 text-white rounded-sm'
         >
-          Read More
+          <span class='sr-only' x-text='blog.title + " - "'></span>Read More
         </a>
       </div>
     </template>

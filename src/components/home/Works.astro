@@ -71,6 +71,7 @@ const works = await fetchWorks();
               href={`/blog/case-study/${slug}/`}
               class='text-xs md:text-sm text-white bg-orange-700 rounded-sm w-full md:w-auto md:min-w-28 px-3 py-2 flex-shrink-0 text-center'
             >
+              <span class='sr-only'>{title} - </span>
               {ctaText}
             </a>
           </div>
