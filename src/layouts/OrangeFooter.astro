@@ -2,86 +2,109 @@
 import navigate from "../assets/home/navigate-1.svg";
 ---
 
-<div class="w-full px-3 sm:px-6">
-    <section
-        class={"grid grid-cols-6 bg-orange-900 p-10 w-full rounded-lg"}
+<div class='w-full px-3 sm:px-6'>
+  <section class={"grid grid-cols-6 bg-orange-900 p-10 w-full rounded-lg"}>
+    <div
+      class={"dark col-span-6 sm:col-span-4 sm:space-x-30 flex article order-1"}
     >
-        <div
-            class={"dark col-span-6 sm:col-span-4 sm:space-x-30 flex article order-1"}
+      <div>
+        <h6>Product</h6>
+        <a
+          href='https://geodashboard.io/'
+          target='_blank'
+          rel='noopener noreferrer'>Geodashboard</a
         >
-            <div>
-                <h6>Product</h6>
-                <p>Geodashboard</p>
-                <p>Logbook</p>
-                <p>Poin</p>
-
-                <h6 class="mt-4">Service</h6>
-                <p>Data Service</p>
-                <p>Software Development</p>
-            </div>
-
-            <div>
-                <h6>Company</h6>
-                <p>About</p>
-                <p>Culture</p>
-                <p>Career</p>
-
-                <h6 class="mt-4">Contact us</h6>
-            </div>
-        </div>
-        <div class="col-span-6 sm:col-span-2 order-3 sm:order-2">
-            <p class="text-neutral-400">
-                Indonesia’s Leading Geospatial Technology that optimize
-                analytics and performance, moving the world one map at a time.
-            </p>
-            <span class="flex space-x-4 mt-4">
-                <a
-                    href="https://www.linkedin.com/company/braga-technology/"
-                    target="_blank"
-                    class="border border-orange-500 text-orange-500 rounded-full py-1 w-36 text-center"
-                    >LinkedIn</a
-                >
-                <a
-                    href="https://www.youtube.com/@bragatechnologies6807"
-                    target="_blank"
-                    class="border border-orange-500 text-orange-500 rounded-full py-1 w-36 text-center"
-                    >Youtube</a
-                ></span
-            >
-        </div>
-        <img
-            src={navigate.src}
-            alt=""
-            class="col-span-6 mt-30 mb-12 order-2 sm:order-3"
-        />
-
-        <p class="col-span-6 sm:col-span-3 text-stone-50 order-5 sm:order-4">
-            © Braga Technologies 2024
-        </p>
-        <span
-            class="col-span-6 sm:col-span-3 sm:flex justify-between text-stone-50 order-4 sm:order-5 border-t sm:border-0 border-neutral-700 mt-8 sm:mt-0 pt-6 sm:pt-0 mb-9 sm:mb-0 space-y-2"
-            ><p>Back to top &uarr;</p>
-            <p>Information Security Policy</p>
-            <p>Terms and Condition</p></span
+        <a href='https://logbook.id/' target='_blank' rel='noopener noreferrer'
+          >Logbook</a
         >
-    </section>
+        <a href='/products/poin/'>Poin</a>
+
+        <h6 class='mt-4'>Service</h6>
+        <a href='/service/'>Data Service</a>
+        <a href='/service/'>Software Development</a>
+      </div>
+
+      <div>
+        <h6>Company</h6>
+        <a href='/company/about/'>About</a>
+        <a href='/company/culture/'>Culture</a>
+        <a href='/company/career/'>Career</a>
+
+        <h6 class='mt-4'>Contact us</h6>
+        <a href='/contact/'>Get in touch</a>
+      </div>
+    </div>
+    <div class='col-span-6 sm:col-span-2 order-3 sm:order-2'>
+      <p class='text-neutral-400'>
+        Indonesia's Leading Geospatial Technology that optimize analytics and
+        performance, moving the world one map at a time.
+      </p>
+      <span class='flex space-x-4 mt-4'>
+        <a
+          href='https://www.linkedin.com/company/braga-technology/'
+          target='_blank'
+          class='border border-orange-500 text-orange-500 rounded-full py-1 w-36 text-center'
+          >LinkedIn</a
+        >
+        <a
+          href='https://www.youtube.com/@bragatechnologies6807'
+          target='_blank'
+          class='border border-orange-500 text-orange-500 rounded-full py-1 w-36 text-center'
+          >Youtube</a
+        ></span
+      >
+    </div>
+    <img
+      src={navigate.src}
+      alt='Braga Technologies navigation logo'
+      class='col-span-6 mt-30 mb-12 order-2 sm:order-3'
+    />
+
+    <p class='col-span-6 sm:col-span-3 text-stone-50 order-5 sm:order-4'>
+      © Braga Technologies 2024
+    </p>
+    <span
+      class='col-span-6 sm:col-span-3 sm:flex justify-between text-stone-50 order-4 sm:order-5 border-t sm:border-0 border-neutral-700 mt-8 sm:mt-0 pt-6 sm:pt-0 mb-9 sm:mb-0 space-y-2'
+      ><a
+        href='#'
+        onclick='window.scrollTo({top: 0, behavior: "smooth"}); return false;'
+        >Back to top &uarr;</a
+      >
+      <a href='/privacy-policy/'>Information Security Policy</a>
+      <a href='/terms/'>Terms and Condition</a></span
+    >
+  </section>
 </div>
 
 <style>
-    .article.dark h6 {
-        color: var(--color-stone-50);
-    }
+  .article.dark h6 {
+    color: var(--color-stone-50);
+  }
 
-    .article.dark p {
-        color: var(--color-neutral-400);
-        margin-top: calc(var(--spacing) * 1);
-    }
+  .article.dark a,
+  .article.dark p {
+    color: var(--color-neutral-400);
+    margin-top: calc(var(--spacing) * 1);
+    display: block;
+    text-decoration: none;
+  }
 
-    .article.light h6 {
-        color: #161414;
-    }
+  .article.dark a:hover {
+    color: var(--color-stone-50);
+  }
 
-    .article.light p {
-        color: #4f4d4a; /* Dark mode color */
-    }
+  .article.light h6 {
+    color: #161414;
+  }
+
+  .article.light a,
+  .article.light p {
+    color: #4f4d4a;
+    display: block;
+    text-decoration: none;
+  }
+
+  .article.light a:hover {
+    color: #161414;
+  }
 </style>

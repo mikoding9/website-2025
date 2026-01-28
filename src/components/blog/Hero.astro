@@ -268,8 +268,12 @@ const directusToken =
         x-model='searchQuery'
         @keyup.enter='performSearch()'
       />
-      <button id='search-button' @click='performSearch()'>
-        <img src={loop.src} alt='' class='cursor-pointer' /></button
+      <button
+        id='search-button'
+        @click='performSearch()'
+        aria-label='Search articles'
+      >
+        <img src={loop.src} alt='Search' class='cursor-pointer' /></button
       >
     </div>
   </div>
@@ -294,7 +298,7 @@ const directusToken =
         <div class='space-y-3'>
           <img
             :src='blog.thumbnail'
-            alt=''
+            :alt='blog.title + " thumbnail"'
             class='w-full h-48 sm:h-56 lg:h-64 object-cover object-top rounded-sm border border-black/10'
           />
           <h6

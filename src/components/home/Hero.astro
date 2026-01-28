@@ -19,16 +19,20 @@ const { headline, subheadline, ctaText, ctaLink, partnerLogos } = Astro.props;
     >
       <img
         src={motionImage.src}
-        alt=''
+        alt='Decorative animated background pattern'
         class='absolute z-0 left 0 top-0 h-full w-full max-w-none'
       />
-      <h3 class='text-4xl sm:text-7xl px-3 sm:w-2/3'>
+      <h1 class='seo-h1 text-4xl sm:text-7xl px-3 sm:w-2/3'>
         {headline}
-      </h3>
-      <h5 class='text-sm sm:text-lg text-neutral-400 px-3 sm:w-1/2'>
+      </h1>
+      <h2 class='seo-h2 text-sm sm:text-lg text-neutral-400 px-3 sm:w-1/2'>
         {subheadline}
-      </h5>
-      <a href={ctaLink} class='bg-orange-600 rounded-sm text-white py-3 px-6'>
+      </h2>
+      <a
+        href={ctaLink}
+        class='bg-orange-600 rounded-sm text-white py-3 px-6'
+        aria-label='Contact Braga for geospatial solutions and location intelligence services'
+      >
         {ctaText}
       </a>
     </div>
@@ -100,5 +104,14 @@ const { headline, subheadline, ctaText, ctaLink, partnerLogos } = Astro.props;
     to {
       transform: translateX(-50%);
     }
+  }
+
+  /* SEO heading classes - preserve visual styling while using semantic H1/H2 */
+  .seo-h1 {
+    font-weight: inherit;
+  }
+
+  .seo-h2 {
+    font-weight: normal;
   }
 </style>

@@ -146,7 +146,11 @@ const navs = [
                         href={href}
                         class='w-56 text-xs text-left cursor-pointer bg-stone-50 hover:bg-white dark:bg-transparent dark:hover:bg-[#232221] border border-stone-200 dark:border-none p-2 rounded-lg transition-colors duration-200'
                       >
-                        <img src={image.src} alt='' class='w-full' />
+                        <img
+                          src={image.src}
+                          alt={`${title} product preview`}
+                          class='w-full'
+                        />
                         <h6 class='text-neutral-800 dark:text-stone-200 my-2 font-semibold'>
                           {title}
                         </h6>
@@ -201,8 +205,8 @@ const navs = [
             class={`rounded-sm text-white py-1.5 px-3 ${currentPath === "/products/poin" || currentPath === "/products/poin/" ? "bg-[#EA374C]" : "bg-[#CD541B] dark:bg-orange-700"}`}
             >Contact</a
           >
-          <button id='burger-menu' class='lg:hidden'>
-            <img src={burgerIcon.src} alt='' />
+          <button id='burger-menu' class='lg:hidden' aria-label='Open menu'>
+            <img src={burgerIcon.src} alt='Menu' />
           </button>
         </div>
       </div>
