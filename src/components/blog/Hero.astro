@@ -8,7 +8,7 @@ const posts = await fetchPosts();
 
 const allWorks = works.map((work) => ({
   thumbnail: work.image,
-  topic: work.topic,
+  topic: work.topic || "General",
   date_created: formatDate(work.date_created),
   title: work.title,
   desc: work.synopsis,
@@ -18,7 +18,7 @@ const allWorks = works.map((work) => ({
 
 const allPosts = posts.map((post) => ({
   thumbnail: post.thumbnail,
-  topic: post.topic,
+  topic: post.topic || "General",
   date_created: formatDate(post.date_created),
   title: post.title,
   desc: post.synopsis,

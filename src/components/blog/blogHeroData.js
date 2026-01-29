@@ -42,10 +42,10 @@ export function createBlogHeroData(allWorks, allPosts, directusToken) {
       if (this.hasSearched && this.searchQuery.trim() !== "") {
         const searchWorks = this.searchResults.works.map((work) => ({
           thumbnail: "https://panel.braga.co.id/panel/assets/" + work.thumbnail,
-          topic: work.topic,
+          topic: work.topic || "General",
           date_created: new Date(work.date_created).toLocaleDateString(
             "en-US",
-            { year: "numeric", month: "short", day: "numeric" }
+            { year: "numeric", month: "short", day: "numeric" },
           ),
           title: work.work_title,
           desc: work.synopsis,
@@ -54,10 +54,10 @@ export function createBlogHeroData(allWorks, allPosts, directusToken) {
         }));
         const searchPosts = this.searchResults.posts.map((post) => ({
           thumbnail: "https://panel.braga.co.id/panel/assets/" + post.thumbnail,
-          topic: post.topic,
+          topic: post.topic || "General",
           date_created: new Date(post.date_created).toLocaleDateString(
             "en-US",
-            { year: "numeric", month: "short", day: "numeric" }
+            { year: "numeric", month: "short", day: "numeric" },
           ),
           title: post.title,
           desc: post.synopsis,
@@ -76,7 +76,7 @@ export function createBlogHeroData(allWorks, allPosts, directusToken) {
 
         if (this.industryFilter !== "all") {
           results = results.filter(
-            (blog) => blog.topic === this.industryFilter
+            (blog) => blog.topic === this.industryFilter,
           );
         }
         return results;
@@ -110,21 +110,21 @@ export function createBlogHeroData(allWorks, allPosts, directusToken) {
     goToPage(page) {
       if (page >= 1 && page <= this.totalPages) {
         this.currentPage = page;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
 
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
 
     prevPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
 
