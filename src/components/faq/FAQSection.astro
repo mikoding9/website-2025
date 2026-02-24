@@ -1,0 +1,112 @@
+---
+interface FAQItem {
+  id: number;
+  section: string;
+  question: string;
+  answer: string;
+  sort: number;
+}
+
+interface Props {
+  sections: Record<string, FAQItem[]>;
+}
+
+const { sections } = Astro.props;
+---
+
+<div class='px-3 sm:px-6 pb-16 sm:pb-24 space-y-12 sm:space-y-16'>
+  {
+    Object.entries(sections).map(([sectionName, items], sectionIdx) => (
+      <div
+        class='faq-group fade-in-up'
+        style={`animation-delay: ${100 * sectionIdx}ms`}
+      >
+        <h2 class='text-stone-300 text-4xl   mb-4 sm:mb-6'>{sectionName}</h2>
+        <div class='space-y-4'>
+          {items.map((item) => (
+            <div
+              class='px-3 faq-item group bg-[#191919] rounded-xs'
+              data-faq-id={item.id}
+            >
+              <button
+                class='faq-trigger w-full flex items-center justify-between py-4 sm:py-5 cursor-pointer text-left gap-4'
+                aria-expanded='false'
+              >
+                <div class='flex items-center gap-3 sm:gap-4 min-w-0'>
+                  <span class='faq-number flex-shrink-0 inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xs bg-neutral-800 text-stone-300 text-xs sm:text-sm font-semibold  transition-colors duration-300'>
+                    {String(item.id).padStart(2, "0")}
+                  </span>
+                  <span class='faq-question text-[#F9F8F7] text-sm sm:text-xl transition-colors duration-300'>
+                    {item.question}
+                  </span>
+                </div>
+                <span class='faq-icon flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-orange-500 transition-all duration-300'>
+                  <svg
+                    class='faq-icon-plus w-7 h-7 transition-transform duration-300'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                    stroke-width='2'
+                  >
+                    <path d='M12 5v14M5 12h14' />
+                  </svg>
+                  <svg
+                    class='faq-icon-minus w-7 h-7 hidden transition-transform duration-300'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    stroke='currentColor'
+                    stroke-width='2'
+                  >
+                    <path d='M5 12h14' />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class='faq-answer overflow-hidden'
+                style='max-height: 0; opacity: 0; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);'
+              >
+                <div class='faq-answer-inner pb-5 sm:pb-6 pl-11 sm:pl-13 pr-4 sm:pr-12'>
+                  <p class='text-neutral-400 text-sm sm:text-base leading-relaxed'>
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* Bottom border for last item */}
+          <div class='border-t border-neutral-800' />
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .faq-item.active .faq-number {
+    background-color: rgb(64 64 64); /* neutral-700 */
+  }
+
+  .faq-item.active .faq-question {
+    color: white;
+  }
+
+  .faq-item.active .faq-icon {
+    color: rgb(234 88 12); /* orange-600 */
+  }
+
+  .faq-item.active .faq-icon-plus {
+    display: none;
+  }
+
+  .faq-item.active .faq-icon-minus {
+    display: block;
+  }
+
+  .faq-trigger:hover .faq-question {
+    color: white;
+  }
+
+  .faq-trigger:hover .faq-icon {
+    color: rgb(249 115 22); /* orange-500 brighter on hover */
+  }
+</style>
