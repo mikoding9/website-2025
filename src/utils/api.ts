@@ -458,3 +458,31 @@ export const searchBlogContent = async (
 
   return { works, posts };
 };
+
+export interface FAQItem {
+  id: number;
+  status: string;
+  date_created: string;
+  section: string;
+  question: string;
+  answer: string;
+  sort: number;
+}
+
+export const fetchFAQs = async (): Promise<FAQItem[]> => {
+  const accessToken = import.meta.env.DIRECTUS_ACCESS_TOKEN;
+  const queryString = new URLSearchParams({
+    fields: "*",
+    sort: "sort",
+    filter: JSON.stringify({ status: { _eq: "published" } }),
+  });
+  const response = await fetch(
+    "https://panel.braga.co.id/panel/items/faq?" + queryString,
+    { headers: { Authorization: "Bearer " + accessToken } },
+  );
+  const json = await response.json();
+
+  if (!json.data) return [];
+
+  return json.data;
+};
