@@ -1,0 +1,161 @@
+---
+import CTA from "../components/blog/CTA.astro";
+import Hero from "../components/faq/Hero.astro";
+import FAQSection from "../components/faq/FAQSection.astro";
+import Layout from "../layouts/Layout.astro";
+import { fetchFAQs } from "../utils/api";
+import type { FAQItem } from "../utils/api";
+
+const faqItems = await fetchFAQs();
+
+// Group FAQ items by section, preserving order of first appearance
+const sections: Record<string, FAQItem[]> = {};
+for (const item of faqItems) {
+  if (!sections[item.section]) {
+    sections[item.section] = [];
+  }
+  sections[item.section].push(item);
+}
+---
+
+<Layout
+  theme='dark'
+  isBlack={true}
+  hideGridOnMobile={true}
+  description='Frequently asked questions about Braga Technologies, GeoDashboard, and our geospatial solutions.'
+>
+  <Hero />
+  <div class='px-3 sm:px-6'>
+    <FAQSection sections={sections} />
+  </div>
+  <CTA />
+</Layout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const allItems = document.querySelectorAll(".faq-item");
+
+    allItems.forEach((item) => {
+      const trigger = item.querySelector(".faq-trigger");
+      const answer = item.querySelector(".faq-answer");
+      const answerInner = item.querySelector(".faq-answer-inner");
+
+      if (!trigger || !answer || !answerInner) return;
+
+      trigger.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+
+        if (isActive) {
+          closeItem(item);
+        } else {
+          openItem(item);
+        }
+      });
+    });
+
+    function openItem(item) {
+      const answer = item.querySelector(".faq-answer");
+      const answerInner = item.querySelector(".faq-answer-inner");
+      const trigger = item.querySelector(".faq-trigger");
+
+      if (!answer || !answerInner) return;
+
+      item.classList.add("active");
+      if (trigger) trigger.setAttribute("aria-expanded", "true");
+
+      const height = answerInner.scrollHeight;
+      answer.style.maxHeight = height + "px";
+      answer.style.opacity = "1";
+    }
+
+    function closeItem(item) {
+      const answer = item.querySelector(".faq-answer");
+      const trigger = item.querySelector(".faq-trigger");
+
+      if (!answer) return;
+
+      item.classList.remove("active");
+      if (trigger) trigger.setAttribute("aria-expanded", "false");
+
+      answer.style.maxHeight = "0";
+      answer.style.opacity = "0";
+    }
+
+    // Fade-in-up animations
+    // For initial page load: delay FAQ groups so hero appears first
+    // For scroll-triggered: show immediately with short stagger
+    const HERO_DELAY = 1600; // slightly after hero's 1400ms
+    let initialLoadDone = false;
+
+    const faqGroups = document.querySelectorAll(".faq-group.fade-in-up");
+    const otherElements = document.querySelectorAll(
+      ".fade-in-up:not(.faq-group)",
+    );
+
+    // Show hero and other fade-in-up elements immediately via observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    otherElements.forEach((el) => observer.observe(el));
+
+    // For FAQ groups: if in viewport on load, delay after hero; otherwise use observer
+    setTimeout(() => {
+      faqGroups.forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          // In viewport on load — show now (hero already visible)
+          el.style.animationDelay = i * 100 + "ms";
+          el.classList.add("visible");
+        }
+      });
+      initialLoadDone = true;
+
+      // Observe remaining groups not yet visible for scroll
+      const scrollObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationDelay = "0ms";
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      faqGroups.forEach((el) => {
+        if (!el.classList.contains("visible")) {
+          scrollObserver.observe(el);
+        }
+      });
+    }, HERO_DELAY);
+  });
+</script>
+
+<style is:global>
+  /* Initial hidden state */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  /* Animation when visible */
+  .fade-in-up.visible {
+    animation: fadeInUp 0.75s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
