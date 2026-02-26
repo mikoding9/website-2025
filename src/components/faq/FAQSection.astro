@@ -9,9 +9,11 @@ interface FAQItem {
 
 interface Props {
   sections: Record<string, FAQItem[]>;
+  theme?: "dark" | "light";
 }
 
-const { sections } = Astro.props;
+const { sections, theme = "dark" } = Astro.props;
+const isLight = theme === "light";
 ---
 
 <div class='px-3 sm:px-6 pb-16 sm:pb-24 space-y-12 sm:space-y-16'>
@@ -21,22 +23,31 @@ const { sections } = Astro.props;
         class='faq-group fade-in-up'
         style={`animation-delay: ${100 * sectionIdx}ms`}
       >
-        <h2 class='text-stone-300 text-4xl   mb-4 sm:mb-6'>{sectionName}</h2>
+        <h2
+          class={`text-4xl mb-4 sm:mb-6 ${isLight ? "text-neutral-800" : "text-stone-300"}`}
+        >
+          {sectionName}
+        </h2>
         <div class='space-y-4'>
           {items.map((item) => (
             <div
-              class='px-3 faq-item group bg-[#191919] rounded-xs'
+              class={`px-3 faq-item group rounded-xs ${isLight ? "bg-stone-200" : "bg-[#191919]"}`}
               data-faq-id={item.id}
+              data-theme={theme}
             >
               <button
                 class='faq-trigger w-full flex items-center justify-between py-4 sm:py-5 cursor-pointer text-left gap-4'
                 aria-expanded='false'
               >
                 <div class='flex items-center gap-3 sm:gap-4 min-w-0'>
-                  <span class='faq-number flex-shrink-0 inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xs bg-neutral-800 text-stone-300 text-xs sm:text-sm font-semibold  transition-colors duration-300'>
+                  <span
+                    class={`faq-number flex-shrink-0 inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xs text-xs sm:text-sm font-semibold transition-colors duration-300 ${isLight ? "bg-stone-300 text-neutral-700" : "bg-neutral-800 text-stone-300"}`}
+                  >
                     {String(item.id).padStart(2, "0")}
                   </span>
-                  <span class='faq-question text-[#F9F8F7] text-sm sm:text-xl transition-colors duration-300'>
+                  <span
+                    class={`faq-question text-sm sm:text-xl transition-colors duration-300 ${isLight ? "text-neutral-800" : "text-[#F9F8F7]"}`}
+                  >
                     {item.question}
                   </span>
                 </div>
@@ -66,7 +77,9 @@ const { sections } = Astro.props;
                 style='max-height: 0; opacity: 0; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);'
               >
                 <div class='faq-answer-inner pb-5 sm:pb-6 pl-11 sm:pl-13 pr-4 sm:pr-12'>
-                  <p class='text-neutral-400 text-sm sm:text-base leading-relaxed'>
+                  <p
+                    class={`text-sm sm:text-base leading-relaxed ${isLight ? "text-neutral-600" : "text-neutral-400"}`}
+                  >
                     {item.answer}
                   </p>
                 </div>
@@ -74,7 +87,9 @@ const { sections } = Astro.props;
             </div>
           ))}
           {/* Bottom border for last item */}
-          <div class='border-t border-neutral-800' />
+          <div
+            class={`border-t ${isLight ? "border-stone-300" : "border-neutral-800"}`}
+          />
         </div>
       </div>
     ))
@@ -82,12 +97,23 @@ const { sections } = Astro.props;
 </div>
 
 <style>
+  /* Dark theme active states (default) */
   .faq-item.active .faq-number {
     background-color: rgb(64 64 64); /* neutral-700 */
   }
 
   .faq-item.active .faq-question {
     color: white;
+  }
+
+  /* Light theme active states */
+  .faq-item[data-theme="light"].active .faq-number {
+    background-color: rgb(163 163 163); /* neutral-400 */
+    color: white;
+  }
+
+  .faq-item[data-theme="light"].active .faq-question {
+    color: rgb(23 23 23); /* neutral-900 */
   }
 
   .faq-item.active .faq-icon {
@@ -104,6 +130,10 @@ const { sections } = Astro.props;
 
   .faq-trigger:hover .faq-question {
     color: white;
+  }
+
+  .faq-item[data-theme="light"] .faq-trigger:hover .faq-question {
+    color: rgb(23 23 23); /* neutral-900 */
   }
 
   .faq-trigger:hover .faq-icon {
