@@ -7,6 +7,7 @@ import Service from "../components/home/Service.astro";
 import Testimoni from "../components/home/Testimoni.astro";
 import Works from "../components/home/Works.astro";
 import Layout from "../layouts/Layout.astro";
+import FAQ from "../components/faq/FAQ.astro";
 import { fetchLandingPage } from "../utils/api";
 
 // Fetch landing page data from Directus
@@ -55,6 +56,7 @@ const landingPageData = await fetchLandingPage();
       description={landingPageData.works.description}
       ctaText={landingPageData.works.ctaText}
     />
+    <FAQ limit={5} />
     <Contact
       headline={landingPageData.contact.headline}
       description={landingPageData.contact.description}

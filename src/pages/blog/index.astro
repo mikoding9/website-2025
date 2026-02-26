@@ -2,12 +2,16 @@
 import CTA from "../../components/blog/CTA.astro";
 import Hero from "../../components/blog/Hero.astro";
 import Layout from "../../layouts/Layout.astro";
+import FAQ from "../../components/faq/FAQ.astro";
 ---
 
 <Layout
   theme='light'
   description="Read about geospatial technology, GIS solutions, location intelligence insights, and industry trends from Braga's expert team."
-  ><Hero /><CTA /></Layout
+  ><Hero />
+
+  <FAQ limit={5} theme='light' />
+  <CTA /></Layout
 >
 
 <script is:inline client:load>
