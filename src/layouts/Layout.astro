@@ -142,7 +142,15 @@ const navs = [
       gtag("js", new Date());
       gtag("config", "G-P0FTJBE0SV");
     </script>
-
+    {
+      import.meta.env.PROD && (
+        <script
+          defer
+          src='https://cloud.umami.is/script.js'
+          data-website-id='db392da6-72f5-4b2e-a830-520e0eac8f4b'
+        ></script>
+      )
+    }
     <script is:inline>
       const setFavicon = () => {
         const favicon = document.getElementById("favicon");
