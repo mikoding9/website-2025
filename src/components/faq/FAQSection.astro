@@ -16,7 +16,7 @@ const { sections, theme = "dark" } = Astro.props;
 const isLight = theme === "light";
 ---
 
-<div class='px-3 sm:px-6 pb-16 sm:pb-24 space-y-12 sm:space-y-16'>
+<div class='px-3 sm:px-6 pb-16 sm:pb-24 space-y-12 sm:space-y-16 ml-6'>
   {
     Object.entries(sections).map(([sectionName, items], sectionIdx) => (
       <div
