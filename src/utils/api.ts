@@ -37,7 +37,7 @@ export const fetchWorks = async (): Promise<Work[]> => {
   const accessToken = import.meta.env.DIRECTUS_ACCESS_TOKEN;
   const queryString = new URLSearchParams({
     fields: "*",
-    limit: "8",
+    limit: "-1",
     sort: "-date_created",
     filter: JSON.stringify({ status: { _eq: "published" } }),
   });
@@ -110,7 +110,7 @@ export const fetchPosts = async (): Promise<Post[]> => {
   const accessToken = import.meta.env.DIRECTUS_ACCESS_TOKEN;
   const queryString = new URLSearchParams({
     fields: "*",
-    limit: "8",
+    limit: "-1",
     sort: "-date_created",
     filter: JSON.stringify({ status: { _eq: "published" } }),
   });
