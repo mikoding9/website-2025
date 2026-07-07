@@ -1,6 +1,6 @@
 # Update Last Deploy
 
-12 Feb January 2026
+7 July 2026
 
 # Astro Starter Kit: Basics
 
