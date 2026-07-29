@@ -23,6 +23,8 @@ const defaultDescription =
 
 const currentPath = Astro.url.pathname;
 
+const apolloTracker = `function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"6a8be91c6b2b3d00147ec978"})},document.head.appendChild(o)}initApollo();`;
+
 const navs = [
   { href: "/", label: "Home" },
   {
@@ -168,6 +170,13 @@ const navs = [
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", setFavicon);
     </script>
+
+    <!-- Apollo website tracker -->
+    {
+      import.meta.env.PROD && (
+        <script is:inline set:html={apolloTracker} />
+      )
+    }
   </head>
   <body
     class={theme +
