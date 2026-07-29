@@ -5,8 +5,7 @@
 # Astro Starter Kit: Basics
 
 # Version Last Deploy
-
-27 May 2026
+29 July 2026
 
 ```sh
 pnpm create astro@latest -- --template basics
