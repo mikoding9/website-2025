@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "build": "astro build",
+    "deploy": "pnpm build && aws s3 sync dist/ s3://braga-website-2025 --profile braga --delete --exclude '.DS_Store'",
     "preview": "astro preview",
     "astro": "astro"
   },
