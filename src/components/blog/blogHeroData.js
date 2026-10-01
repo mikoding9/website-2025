@@ -67,7 +67,7 @@ export function createBlogHeroData(allWorks, allPosts, directusToken) {
 
         let results = [];
         if (this.filter === "all") {
-          results = [...searchWorks, ...searchPosts];
+          results = [...searchPosts, ...searchWorks];
         } else if (this.filter === "work") {
           results = searchWorks;
         } else if (this.filter === "post") {
@@ -84,7 +84,7 @@ export function createBlogHeroData(allWorks, allPosts, directusToken) {
 
       let results = [];
       if (this.filter === "all") {
-        results = [...this.allWorks, ...this.allPosts];
+        results = [...this.allPosts, ...this.allWorks];
       } else if (this.filter === "work") {
         results = this.allWorks;
       } else if (this.filter === "post") {
